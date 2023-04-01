@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		500FE30E29D82C3F00CC78CE /* LepraDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE30D29D82C3F00CC78CE /* LepraDomains.swift */; };
+		500FE31029D82C4A00CC78CE /* LepraDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE30F29D82C4A00CC78CE /* LepraDomain.swift */; };
+		500FE31229D841A300CC78CE /* LepraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31129D841A300CC78CE /* LepraFeedView.swift */; };
+		500FE31429D841B500CC78CE /* LepraDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31329D841B500CC78CE /* LepraDomainView.swift */; };
+		500FE31629D841C500CC78CE /* LepraPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31529D841C500CC78CE /* LepraPreferencesView.swift */; };
+		500FE32229D8919700CC78CE /* LepraFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE32129D8919700CC78CE /* LepraFormatter.swift */; };
+		500FE32429D896B900CC78CE /* DataRequest+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE32329D896B900CC78CE /* DataRequest+Extras.swift */; };
+		50F973AD29D61E4500C4E5D6 /* LepraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973AC29D61E4500C4E5D6 /* LepraApp.swift */; };
+		50F973AF29D61E4500C4E5D6 /* LepraContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973AE29D61E4500C4E5D6 /* LepraContentView.swift */; };
+		50F973B129D61E4700C4E5D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F973B029D61E4700C4E5D6 /* Assets.xcassets */; };
+		50F973B529D61E4700C4E5D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F973B429D61E4700C4E5D6 /* Preview Assets.xcassets */; };
+		50F973BD29D61FBD00C4E5D6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 50F973BC29D61FBD00C4E5D6 /* Alamofire */; };
+		50F973C229D6DB4500C4E5D6 /* LepraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C129D6DB4500C4E5D6 /* LepraViewModel.swift */; };
+		50F973C529D6DE3A00C4E5D6 /* LepraGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C429D6DE3A00C4E5D6 /* LepraGender.swift */; };
+		50F973C729D6DF8100C4E5D6 /* LepraAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C629D6DF8100C4E5D6 /* LepraAuth.swift */; };
+		50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C829D6DF9400C4E5D6 /* LepraUser.swift */; };
+		50F973CB29D6E08200C4E5D6 /* LepraFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CA29D6E08200C4E5D6 /* LepraFeed.swift */; };
+		50F973CD29D6E09900C4E5D6 /* LepraPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CC29D6E09900C4E5D6 /* LepraPost.swift */; };
+		50F973CF29D6E11400C4E5D6 /* LepraLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CE29D6E11400C4E5D6 /* LepraLoginView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		500FE30D29D82C3F00CC78CE /* LepraDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomains.swift; sourceTree = "<group>"; };
+		500FE30F29D82C4A00CC78CE /* LepraDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomain.swift; sourceTree = "<group>"; };
+		500FE31129D841A300CC78CE /* LepraFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFeedView.swift; sourceTree = "<group>"; };
+		500FE31329D841B500CC78CE /* LepraDomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomainView.swift; sourceTree = "<group>"; };
+		500FE31529D841C500CC78CE /* LepraPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraPreferencesView.swift; sourceTree = "<group>"; };
+		500FE32129D8919700CC78CE /* LepraFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFormatter.swift; sourceTree = "<group>"; };
+		500FE32329D896B900CC78CE /* DataRequest+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+Extras.swift"; sourceTree = "<group>"; };
+		50F973A929D61E4500C4E5D6 /* iLepra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLepra.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		50F973AC29D61E4500C4E5D6 /* LepraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraApp.swift; sourceTree = "<group>"; };
+		50F973AE29D61E4500C4E5D6 /* LepraContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraContentView.swift; sourceTree = "<group>"; };
+		50F973B029D61E4700C4E5D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50F973B229D61E4700C4E5D6 /* iLepra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iLepra.entitlements; sourceTree = "<group>"; };
+		50F973B429D61E4700C4E5D6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		50F973C129D6DB4500C4E5D6 /* LepraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraViewModel.swift; sourceTree = "<group>"; };
+		50F973C429D6DE3A00C4E5D6 /* LepraGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraGender.swift; sourceTree = "<group>"; };
+		50F973C629D6DF8100C4E5D6 /* LepraAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraAuth.swift; sourceTree = "<group>"; };
+		50F973C829D6DF9400C4E5D6 /* LepraUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraUser.swift; sourceTree = "<group>"; };
+		50F973CA29D6E08200C4E5D6 /* LepraFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFeed.swift; sourceTree = "<group>"; };
+		50F973CC29D6E09900C4E5D6 /* LepraPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraPost.swift; sourceTree = "<group>"; };
+		50F973CE29D6E11400C4E5D6 /* LepraLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraLoginView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50F973A629D61E4500C4E5D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50F973BD29D61FBD00C4E5D6 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		500FE31D29D859E600CC78CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		500FE32029D8917F00CC78CE /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				500FE32129D8919700CC78CE /* LepraFormatter.swift */,
+				500FE32329D896B900CC78CE /* DataRequest+Extras.swift */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
+		50F973A029D61E4500C4E5D6 = {
+			isa = PBXGroup;
+			children = (
+				50F973AB29D61E4500C4E5D6 /* iLepra */,
+				50F973AA29D61E4500C4E5D6 /* Products */,
+				500FE31D29D859E600CC78CE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		50F973AA29D61E4500C4E5D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50F973A929D61E4500C4E5D6 /* iLepra.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50F973AB29D61E4500C4E5D6 /* iLepra */ = {
+			isa = PBXGroup;
+			children = (
+				500FE32029D8917F00CC78CE /* Extras */,
+				50F973C329D6DE1F00C4E5D6 /* Models */,
+				50F973AC29D61E4500C4E5D6 /* LepraApp.swift */,
+				50F973C129D6DB4500C4E5D6 /* LepraViewModel.swift */,
+				50F973CE29D6E11400C4E5D6 /* LepraLoginView.swift */,
+				50F973AE29D61E4500C4E5D6 /* LepraContentView.swift */,
+				500FE31129D841A300CC78CE /* LepraFeedView.swift */,
+				500FE31329D841B500CC78CE /* LepraDomainView.swift */,
+				500FE31529D841C500CC78CE /* LepraPreferencesView.swift */,
+				50F973B029D61E4700C4E5D6 /* Assets.xcassets */,
+				50F973B229D61E4700C4E5D6 /* iLepra.entitlements */,
+				50F973B329D61E4700C4E5D6 /* Preview Content */,
+			);
+			path = iLepra;
+			sourceTree = "<group>";
+		};
+		50F973B329D61E4700C4E5D6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				50F973B429D61E4700C4E5D6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		50F973C329D6DE1F00C4E5D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				50F973C629D6DF8100C4E5D6 /* LepraAuth.swift */,
+				500FE30F29D82C4A00CC78CE /* LepraDomain.swift */,
+				500FE30D29D82C3F00CC78CE /* LepraDomains.swift */,
+				50F973CA29D6E08200C4E5D6 /* LepraFeed.swift */,
+				50F973C429D6DE3A00C4E5D6 /* LepraGender.swift */,
+				50F973CC29D6E09900C4E5D6 /* LepraPost.swift */,
+				50F973C829D6DF9400C4E5D6 /* LepraUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50F973A829D61E4500C4E5D6 /* iLepra */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50F973B829D61E4700C4E5D6 /* Build configuration list for PBXNativeTarget "iLepra" */;
+			buildPhases = (
+				50F973A529D61E4500C4E5D6 /* Sources */,
+				50F973A629D61E4500C4E5D6 /* Frameworks */,
+				50F973A729D61E4500C4E5D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iLepra;
+			packageProductDependencies = (
+				50F973BC29D61FBD00C4E5D6 /* Alamofire */,
+			);
+			productName = iLepra;
+			productReference = 50F973A929D61E4500C4E5D6 /* iLepra.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50F973A129D61E4500C4E5D6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					50F973A829D61E4500C4E5D6 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = 50F973A429D61E4500C4E5D6 /* Build configuration list for PBXProject "iLepra" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50F973A029D61E4500C4E5D6;
+			packageReferences = (
+				50F973BB29D61FBD00C4E5D6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			productRefGroup = 50F973AA29D61E4500C4E5D6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50F973A829D61E4500C4E5D6 /* iLepra */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50F973A729D61E4500C4E5D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50F973B529D61E4700C4E5D6 /* Preview Assets.xcassets in Resources */,
+				50F973B129D61E4700C4E5D6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50F973A529D61E4500C4E5D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50F973AF29D61E4500C4E5D6 /* LepraContentView.swift in Sources */,
+				500FE31029D82C4A00CC78CE /* LepraDomain.swift in Sources */,
+				50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */,
+				50F973C529D6DE3A00C4E5D6 /* LepraGender.swift in Sources */,
+				50F973C729D6DF8100C4E5D6 /* LepraAuth.swift in Sources */,
+				500FE31229D841A300CC78CE /* LepraFeedView.swift in Sources */,
+				500FE30E29D82C3F00CC78CE /* LepraDomains.swift in Sources */,
+				50F973CD29D6E09900C4E5D6 /* LepraPost.swift in Sources */,
+				500FE32429D896B900CC78CE /* DataRequest+Extras.swift in Sources */,
+				50F973CB29D6E08200C4E5D6 /* LepraFeed.swift in Sources */,
+				50F973C229D6DB4500C4E5D6 /* LepraViewModel.swift in Sources */,
+				50F973CF29D6E11400C4E5D6 /* LepraLoginView.swift in Sources */,
+				500FE32229D8919700CC78CE /* LepraFormatter.swift in Sources */,
+				500FE31429D841B500CC78CE /* LepraDomainView.swift in Sources */,
+				500FE31629D841C500CC78CE /* LepraPreferencesView.swift in Sources */,
+				50F973AD29D61E4500C4E5D6 /* LepraApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		50F973B629D61E4700C4E5D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		50F973B729D61E4700C4E5D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		50F973B929D61E4700C4E5D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iLepra/iLepra.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iLepra/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mvp.iLepra;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50F973BA29D61E4700C4E5D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iLepra/iLepra.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iLepra/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.mvp.iLepra;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50F973A429D61E4500C4E5D6 /* Build configuration list for PBXProject "iLepra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50F973B629D61E4700C4E5D6 /* Debug */,
+				50F973B729D61E4700C4E5D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50F973B829D61E4700C4E5D6 /* Build configuration list for PBXNativeTarget "iLepra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50F973B929D61E4700C4E5D6 /* Debug */,
+				50F973BA29D61E4700C4E5D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50F973BB29D61FBD00C4E5D6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50F973BC29D61FBD00C4E5D6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50F973BB29D61FBD00C4E5D6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 50F973A129D61E4500C4E5D6 /* Project object */;
+}

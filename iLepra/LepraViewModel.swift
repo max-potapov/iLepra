@@ -18,6 +18,8 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     private var feedPage: UInt = 1
     @Published private(set) var feedPosts: [LepraPost] = []
 
+    @Published private(set) var domains: [LepraDomain] = []
+
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -94,6 +96,29 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         await MainActor.run {
             self.feedPage += 1
             self.feedPosts += feed.posts
+        }
+    }
+
+    func fetchDomains() async throws {
+        guard let auth else { return }
+
+        let domains = try! await AF.request(
+            "https://leprosorium.ru/api/domains",
+            method: .get,
+            headers: [
+                "X-Futuware-UID": auth.uid,
+                "X-Futuware-SID": auth.sid,
+            ]
+        )
+        .validate()
+        .serializingDecodable(
+            LepraDomains.self,
+            decoder: decoder
+        )
+        .value
+
+        await MainActor.run {
+            self.domains = domains.domains
         }
     }
 }

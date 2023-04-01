@@ -13,7 +13,20 @@ struct LepraUser: Codable, Identifiable, Hashable {
     let deleted: Bool
     let gender: LepraGender
     let id: Int
-    let isIgnored: Bool
+    let isIgnored: Bool?
     let login: String
     let rank: String?
+
+    func wroteOnceText(when: Date) -> AttributedString {
+        try! .init(
+            markdown: [
+                gender == .male ? "Написал" : "Написала",
+                rank,
+                deleted ? "~~`\(login)`~~" : "`\(login)`",
+                LepraFormatter.shared.relativeDateTimeFormatter.localizedString(for: when, relativeTo: .now),
+            ]
+            .compactMap { $0 }
+            .joined(separator: " ")
+        )
+    }
 }

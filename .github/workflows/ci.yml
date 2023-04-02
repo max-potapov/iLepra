@@ -1,0 +1,44 @@
+name: iLepra CI workflow
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: Build default scheme
+    runs-on: macos-12
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_14.2.app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Show SDKs version
+        run: xcodebuild -showsdks
+      - name: Show dev path
+        run: xcode-select -p
+      - name: Prepare Simulator
+        run: |
+          # xcversion simulators --install='iOS 15.4 Simulator'
+          sudo mkdir -p /Library/Developer/CoreSimulator/Profiles/Runtimes
+          sudo ln -s /Applications/Xcode_14.2.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 15.4.simruntime
+      - name: Build iOS
+        env:
+          scheme: ${{ 'iLepra' }}
+          project: ${{ 'iLepra.xcodeproj' }}
+          destination: ${{ 'platform=iOS Simulator,name=iPhone 11' }}
+        run: |
+          set -o pipefail
+          xcodebuild build -scheme "$scheme" -project "$project" -destination "$destination" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
+      - name: Build macOS
+        env:
+          scheme: ${{ 'iLepra' }}
+          project: ${{ 'iLepra.xcodeproj' }}
+          destination: ${{ 'platform=macOS' }}
+        run: |
+          set -o pipefail
+          xcodebuild build -scheme "$scheme" -project "$project" -destination "$destination" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty

@@ -30,8 +30,9 @@ struct LepraLoginView: View {
             TextField("Login", text: $username)
             #if os(iOS)
                 .keyboardType(.asciiCapable)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
             #endif
-                .disabled(isLoading)
                 .disabled(isLoading)
                 .textContentType(.username)
                 .textFieldStyle(.roundedBorder)
@@ -41,6 +42,7 @@ struct LepraLoginView: View {
             #if os(iOS)
                 .keyboardType(.asciiCapable)
             #endif
+                .disabled(isLoading)
                 .textContentType(.password)
                 .textFieldStyle(.roundedBorder)
                 .frame(maxWidth: 300)

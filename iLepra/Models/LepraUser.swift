@@ -18,15 +18,19 @@ struct LepraUser: Codable, Identifiable, Hashable {
     let rank: String?
 
     func wroteOnceText(when: Date) -> AttributedString {
-        try! .init(
-            markdown: [
-                gender == .male ? "Написал" : "Написала",
-                rank,
-                deleted ? "~~`\(login)`~~" : "`\(login)`",
-                LepraFormatter.shared.relativeDateTimeFormatter.localizedString(for: when, relativeTo: .now),
-            ]
-            .compactMap { $0 }
-            .joined(separator: " ")
-        )
+        let text = [
+            gender == .male ? "Написал" : "Написала",
+            rank,
+            deleted ? "~~`\(login)`~~" : "`\(login)`",
+            LepraFormatter.shared.relativeDateTimeFormatter.localizedString(for: when, relativeTo: .now),
+        ]
+        .compactMap { $0 }
+        .joined(separator: " ")
+
+        do {
+            return try .init(markdown: text)
+        } catch {
+            return .init(stringLiteral: text)
+        }
     }
 }

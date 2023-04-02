@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LepraContentView: View {
     @EnvironmentObject var viewModel: LepraViewModel
-    @State private var selection = 0
+    @State private var selection: Int = 0
 
     var body: some View {
         TabView(selection: $selection) {
@@ -17,19 +17,16 @@ struct LepraContentView: View {
                 .tabItem {
                     Label("Главная", systemImage: "house")
                 }
-                .environmentObject(viewModel)
                 .tag(0)
             LepraDomainView()
                 .tabItem {
                     Label("Подлепры", systemImage: "list.dash")
                 }
-                .environmentObject(viewModel)
                 .tag(1)
             LepraPreferencesView()
                 .tabItem {
                     Label("Профиль", systemImage: "brain.head.profile")
                 }
-                .environmentObject(viewModel)
                 .tag(2)
         }
     }

@@ -29,8 +29,16 @@ struct WebImageProvider: InlineImageProvider {
             let maxWidth = geometry.size.width * 0.8
             let maxHeight = 300.0
 
-            let transformer = SDImageResizingTransformer(size: .init(width: maxWidth, height: maxHeight), scaleMode: .aspectFit)
-            SDWebImageManager.shared.loadImage(with: url, context: [.imageTransformer: transformer], progress: .none) { image, _, error, _, _, _ in
+            let transformer = SDImageResizingTransformer(
+                size: .init(width: maxWidth, height: maxHeight),
+                scaleMode: .aspectFit
+            )
+
+            SDWebImageManager.shared.loadImage(
+                with: url,
+                context: [.imageTransformer: transformer],
+                progress: .none
+            ) { image, _, error, _, _, _ in
                 if let image {
                     continuation.resume(with: .success(image))
                     return

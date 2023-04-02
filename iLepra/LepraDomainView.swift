@@ -5,67 +5,44 @@
 //  Created by Maxim Potapov on 01.04.2023.
 //
 
-import HTMLEntities
 import SwiftUI
 
 struct LepraDomainView: View {
     @EnvironmentObject var viewModel: LepraViewModel
-    @State private var isLoading = false
+    @State private var isLoading: Bool = false
+    @State private var isLoadingPosts: Bool = false
+    @State private var navigationPath: NavigationPath = .init()
 
     var body: some View {
         if viewModel.domains.isEmpty {
-            ProgressView()
-                .tint(.accentColor)
-                .onAppear {
-                    fetch()
-                }
+            LepraEmptyContentPlaceholderView {
+                fetch()
+            }
         } else {
-            List {
-                ForEach(viewModel.domains.indices, id: \.self) { index in
-                    Section {
-                        VStack(alignment: .leading, spacing: 8) {
-                            let domain = viewModel.domains[index]
-                            HStack(spacing: 16) {
-                                AsyncImage(url: domain.logoUrl) { image in
-                                    image.resizable().clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 64, height: 64)
-
-                                VStack(alignment: .leading) {
-                                    Spacer()
-                                    Text(domain.prefix)
-                                        .font(.title)
-                                    Text(domain.title.htmlUnescape())
-                                        .font(.subheadline)
-                                    Spacer()
-                                }
-                            }
-
-                            Text(domain.name.htmlUnescape())
-                                .font(.callout)
-                            Spacer()
-                                .frame(height: 8)
-                        }
+            NavigationStack(path: $navigationPath) {
+                List {
+                    ForEach($viewModel.domains, id: \.self) { $domain in
+                        LepraDomainSectionView(domain: $domain)
                     }
+
+                    LepraLoadingSectionView(isLoading: $isLoading)
                 }
-
-                if isLoading {
-                    HStack {
-                        Spacer()
-                        ProgressView()
-                            .tint(.accentColor)
-                        Spacer()
+                .navigationTitle("Подлепры")
+                .navigationDestination(for: LepraDomain.self) { domain in
+                    LepraPostsView(
+                        isLoading: $isLoadingPosts,
+                        navigationPath: $navigationPath,
+                        posts: $viewModel.domainPosts,
+                        onLastSectionAppear: {
+                            fetchPosts()
+                        }
+                    )
+                    .onAppear {
+                        viewModel.setCurrentDomain(domain)
                     }
+                    .navigationTitle(domain.title)
                 }
             }
-            #if os(macOS)
-            .listStyle(.inset(alternatesRowBackgrounds: true))
-            #endif
-            #if os(iOS)
-            .listStyle(.insetGrouped)
-            #endif
         }
     }
 
@@ -80,6 +57,20 @@ struct LepraDomainView: View {
 
         Task {
             try await viewModel.fetchDomains()
+        }
+    }
+
+    func fetchPosts() {
+        guard !isLoadingPosts else { return }
+
+        defer {
+            isLoadingPosts = false
+        }
+
+        isLoadingPosts = true
+
+        Task {
+            try await viewModel.fetchPosts()
         }
     }
 }

@@ -15,10 +15,14 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     @AppStorage("username") private var username: String?
     @AppStorage("password") private var password: String?
 
-    private var feedPage: UInt = 1
-    @Published private(set) var feedPosts: [LepraPost] = []
+    private var feedPostsPage: UInt = 1
+    @Published var feedPosts: [LepraPost] = []
 
-    @Published private(set) var domains: [LepraDomain] = []
+    @Published var domains: [LepraDomain] = []
+
+    private var currentDomain: LepraDomain?
+    private var domainPostsPage: UInt = 1
+    @Published var domainPosts: [LepraPost] = []
 
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -31,6 +35,9 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         guard
             ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1"
         else {
+            feedPosts = (0 ..< 10).map { _ in .init() }
+            domains = (0 ..< 4).map { _ in .init() }
+            domainPosts = (0 ..< 10).map { _ in .init() }
             return
         }
 
@@ -77,7 +84,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
             "https://leprosorium.ru/api/feeds/\(feed.rawValue)",
             method: .get,
             parameters: [
-                "page": feedPage,
+                "page": feedPostsPage,
                 "per_page": 3,
                 "threshold_rating": threshold.rawValue,
             ],
@@ -94,7 +101,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         .value
 
         await MainActor.run {
-            self.feedPage += 1
+            self.feedPostsPage += 1
             self.feedPosts += feed.posts
         }
     }
@@ -119,6 +126,44 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
 
         await MainActor.run {
             self.domains = domains.domains
+        }
+    }
+
+    func setCurrentDomain(_ domain: LepraDomain) {
+        guard currentDomain != domain else { return }
+
+        currentDomain = domain
+        domainPostsPage = 1
+        domainPosts = []
+    }
+
+    func fetchPosts(threshold: LepraThresholdRating = .hardcore) async throws {
+        guard let auth else { return }
+        guard let currentDomain else { return }
+
+        let feed = try await AF.request(
+            "https://leprosorium.ru/api/domains/\(currentDomain.prefix)/posts",
+            method: .get,
+            parameters: [
+                "page": domainPostsPage,
+                "per_page": 3,
+                "threshold_rating": threshold.rawValue,
+            ],
+            headers: [
+                "X-Futuware-UID": auth.uid,
+                "X-Futuware-SID": auth.sid,
+            ]
+        )
+        .validate()
+        .serializingDecodable(
+            LepraFeed.self,
+            decoder: decoder
+        )
+        .value
+
+        await MainActor.run {
+            self.domainPostsPage += 1
+            self.domainPosts += feed.posts
         }
     }
 }

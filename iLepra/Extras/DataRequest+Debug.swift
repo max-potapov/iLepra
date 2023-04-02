@@ -1,5 +1,5 @@
 //
-//  DataRequest+Extras.swift
+//  DataRequest+Debug.swift
 //  iLepra
 //
 //  Created by Maxim Potapov on 01.04.2023.

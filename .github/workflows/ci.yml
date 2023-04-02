@@ -30,7 +30,7 @@ jobs:
           destination: ${{ 'platform=iOS Simulator,name=iPhone 11' }}
         run: |
           set -o pipefail
-          xcodebuild build -scheme "$scheme" -project "$project" -destination "$destination" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
+          xcodebuild build -scheme "$scheme" -project "$project" -sdk iphoneos16.2 -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
       - name: Build macOS
         env:
           scheme: ${{ 'iLepra' }}

@@ -1,0 +1,41 @@
+name: iLepra CI workflow
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: Build default scheme
+    runs-on: macos-12
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_14.2.app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Show SDKs version
+        run: xcodebuild -showsdks
+      - name: Show dev path
+        run: xcode-select -p
+      - name: Show runtimes
+        run: xcrun simctl list runtimes
+      - name: Build iOS
+        env:
+          scheme: ${{ 'iLepra' }}
+          project: ${{ 'iLepra.xcodeproj' }}
+          sdk: ${{ 'iphoneos16.2' }}
+        run: |
+          set -o pipefail
+          xcodebuild build -scheme "$scheme" -project "$project" -sdk "$sdk" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
+      - name: Build macOS
+        env:
+          scheme: ${{ 'iLepra' }}
+          project: ${{ 'iLepra.xcodeproj' }}
+          sdk: ${{ 'macosx13.1' }}
+        run: |
+          set -o pipefail
+          xcodebuild build -scheme "$scheme" -project "$project" -sdk "$sdk" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty

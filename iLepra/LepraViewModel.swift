@@ -102,7 +102,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     func fetchDomains() async throws {
         guard let auth else { return }
 
-        let domains = try! await AF.request(
+        let domains = try await AF.request(
             "https://leprosorium.ru/api/domains",
             method: .get,
             headers: [

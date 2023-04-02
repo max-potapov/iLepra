@@ -21,7 +21,7 @@ jobs:
         run: xcodebuild -showsdks
       - name: Show dev path
         run: xcode-select -p
-      - name: Show simulators
+      - name: Show runtimes
         run: xcrun simctl list runtimes
       - name: Build iOS
         env:
@@ -30,7 +30,7 @@ jobs:
           sdk: ${{ 'iphoneos16.2' }}
         run: |
           set -o pipefail
-          xcodebuild build -scheme "$scheme" -project "$project" -sdk $sdk -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
+          xcodebuild build -scheme "$scheme" -project "$project" -sdk "$sdk" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
       - name: Build macOS
         env:
           scheme: ${{ 'iLepra' }}
@@ -38,4 +38,4 @@ jobs:
           sdk: ${{ 'macosx13.1' }}
         run: |
           set -o pipefail
-          xcodebuild build -scheme "$scheme" -project "$project" -sdk $sdk -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty
+          xcodebuild build -scheme "$scheme" -project "$project" -sdk "$sdk" -configuration Debug CODE_SIGNING_ALLOWED=NO | xcpretty

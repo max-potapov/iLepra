@@ -12,8 +12,8 @@
 		50022C2029D8BAEF0056DCEE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C1F29D8BAEF0056DCEE /* SwiftSoup */; };
 		50022C2329D8C87D0056DCEE /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C2229D8C87D0056DCEE /* MarkdownUI */; };
 		50022C2B29D8E5BE0056DCEE /* WebImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022C2A29D8E5BE0056DCEE /* WebImageProvider.swift */; };
-		50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C3029D970810056DCEE /* SDWebImageSwiftUI */; };
 		50022C2E29D8EFE80056DCEE /* HTMLEntities in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C2D29D8EFE80056DCEE /* HTMLEntities */; };
+		50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C3029D970810056DCEE /* SDWebImageSwiftUI */; };
 		500FE30E29D82C3F00CC78CE /* LepraDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE30D29D82C3F00CC78CE /* LepraDomains.swift */; };
 		500FE31029D82C4A00CC78CE /* LepraDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE30F29D82C4A00CC78CE /* LepraDomain.swift */; };
 		500FE31229D841A300CC78CE /* LepraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31129D841A300CC78CE /* LepraFeedView.swift */; };
@@ -168,6 +168,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				509F277829DA28A500CBFFB1 /* PBXTargetDependency */,
 			);
 			name = iLepra;
 			packageProductDependencies = (
@@ -211,6 +212,7 @@
 				50022C2129D8C87D0056DCEE /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */,
+				509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 50F973AA29D61E4500C4E5D6 /* Products */;
 			projectDirPath = "";
@@ -261,6 +263,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		509F277829DA28A500CBFFB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 509F277729DA28A500CBFFB1 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		50F973B629D61E4700C4E5D6 /* Debug */ = {
@@ -484,6 +493,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/swift-html-entities.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -492,12 +509,12 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */ = {
+		509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Kitura/swift-html-entities.git";
+			repositoryURL = "https://github.com/realm/SwiftLint";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 0.51.0;
 			};
 		};
 		50F973BB29D61FBD00C4E5D6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -521,15 +538,20 @@
 			package = 50022C2129D8C87D0056DCEE /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
+		50022C2D29D8EFE80056DCEE /* HTMLEntities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */;
+			productName = HTMLEntities;
+		};
 		50022C3029D970810056DCEE /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
-		50022C2D29D8EFE80056DCEE /* HTMLEntities */ = {
+		509F277729DA28A500CBFFB1 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */;
-			productName = HTMLEntities;
+			package = 509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 		50F973BC29D61FBD00C4E5D6 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

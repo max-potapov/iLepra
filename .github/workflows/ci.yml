@@ -23,10 +23,6 @@ jobs:
         run: xcode-select -p
       - name: Show runtimes
         run: xcrun simctl list runtimes
-      - name: SwiftLint (Only files changed in the PR)
-        uses: norio-nomura/action-swiftlint@3.2.1
-        env:
-          DIFF_BASE: ${{ github.base_ref }}
       - name: Build iOS
         env:
           scheme: ${{ 'iLepra' }}

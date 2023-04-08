@@ -199,7 +199,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     func fetchMe() async throws {
         guard let auth else { return }
 
-        let result = try! await AF.request(
+        let result = try await AF.request(
             "https://leprosorium.ru/api/my",
             method: .get,
             headers: [

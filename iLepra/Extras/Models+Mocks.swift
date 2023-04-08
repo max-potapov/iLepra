@@ -48,3 +48,24 @@ extension LepraUser {
         rank = ["kek", "lol"].randomElement()
     }
 }
+
+extension LepraComment {
+    init(id: Int) {
+        body = "<b>kek</b>"
+        canBan = .random()
+        canDelete = .random()
+        canEdit = .random()
+        canModerate = .random()
+        canRemoveCommentThreads = .random()
+        created = .now.addingTimeInterval(-1 * 60 * TimeInterval(id))
+        dateOrder = .random(in: 0 ..< 100)
+        self.id = id
+        parentId = id % 5 == 0 ? .none : id - 1
+        rating = .random(in: 0 ..< 100)
+        ratingOrder = .random(in: 0 ..< 100)
+        treeLevel = id
+        unread = .random()
+        user = .init()
+        userVote = .random(in: 0 ..< 100)
+    }
+}

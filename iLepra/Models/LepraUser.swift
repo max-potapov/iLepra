@@ -7,7 +7,6 @@
 
 import Foundation
 
-// swiftformat:sort
 struct LepraUser: Codable, Identifiable, Hashable {
     let active: Bool
     let deleted: Bool
@@ -16,6 +15,12 @@ struct LepraUser: Codable, Identifiable, Hashable {
     let isIgnored: Bool?
     let login: String
     let rank: String?
+
+    var kind: String {
+        let prefix = id % 2 == 0 ? "" : "не"
+        let suffix = gender == .male ? "к" : "ца"
+        return "\(prefix)чётни\(suffix)"
+    }
 
     func wroteOnceText(when: Date) -> AttributedString {
         let text = [

@@ -11,7 +11,26 @@ struct LepraPreferencesView: View {
     @EnvironmentObject var viewModel: LepraViewModel
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let leper = viewModel.leper {
+            VStack {
+                Text(leper.login)
+                    .font(.largeTitle)
+                Text("#" + leper.id.description)
+                    .font(.headline)
+                Text(leper.kind)
+                    .font(.subheadline)
+            }
+        } else {
+            LepraEmptyContentPlaceholderView {
+                fetch()
+            }
+        }
+    }
+
+    func fetch() {
+        Task {
+            try await viewModel.fetchMe()
+        }
     }
 }
 

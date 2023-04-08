@@ -26,6 +26,8 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
 
     @Published var postComments: [LepraComment] = []
 
+    @Published var leper: LepraUser?
+
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -41,6 +43,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
             domains = (0 ..< 4).map { _ in .init() }
             domainPosts = (0 ..< 10).map { _ in .init() }
             postComments = (0 ..< 10).map { .init(id: $0) }
+            leper = .init()
             return
         }
 
@@ -190,6 +193,29 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
 
         await MainActor.run {
             self.postComments = result.comments
+        }
+    }
+
+    func fetchMe() async throws {
+        guard let auth else { return }
+
+        let result = try await AF.request(
+            "https://leprosorium.ru/api/my",
+            method: .get,
+            headers: [
+                "X-Futuware-UID": auth.uid,
+                "X-Futuware-SID": auth.sid,
+            ]
+        )
+        .validate()
+        .serializingDecodable(
+            LepraUser.self,
+            decoder: decoder
+        )
+        .value
+
+        await MainActor.run {
+            self.leper = result
         }
     }
 }

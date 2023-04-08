@@ -39,6 +39,7 @@ struct LepraPostSectionView: View {
                 Divider()
 
                 Text("\(post.user.wroteOnceText(when: post.created))")
+                    .font(.footnote)
 
                 layout {
                     Button {
@@ -56,31 +57,7 @@ struct LepraPostSectionView: View {
                         Spacer()
                     }
 
-                    HStack {
-                        Button {
-                            // down vote
-                        } label: {
-                            Image(systemName: post.userVote ?? 0 < 0 ? "minus.square.fill" : "minus.square")
-                        }
-                        .buttonStyle(.borderless)
-                        .tint(.accentColor)
-
-                        Button {
-                            // up vote
-                        } label: {
-                            Image(systemName: post.userVote ?? 0 > 0 ? "plus.square.fill" : "plus.square")
-                        }
-                        .buttonStyle(.borderless)
-                        .tint(.accentColor)
-
-                        Button {
-                            // show votes
-                        } label: {
-                            Text(post.rating.description)
-                        }
-                        .buttonStyle(.borderless)
-                        .tint(.accentColor)
-                    }
+                    LepraVotesView(rating: post.rating, userVote: post.userVote)
                 }
                 .frame(maxWidth: .infinity, alignment: useHorizontalLayout ? .leading : .center)
             }

@@ -24,6 +24,8 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     private var domainPostsPage: UInt = 1
     @Published var domainPosts: [LepraPost] = []
 
+    @Published var postComments: [LepraComment] = []
+
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -38,6 +40,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
             feedPosts = (0 ..< 10).map { _ in .init() }
             domains = (0 ..< 4).map { _ in .init() }
             domainPosts = (0 ..< 10).map { _ in .init() }
+            postComments = (0 ..< 10).map { .init(id: $0) }
             return
         }
 
@@ -80,7 +83,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     func fetchFeed(_ feed: LepraFeedType = .main, threshold: LepraThresholdRating = .hardcore) async throws {
         guard let auth else { return }
 
-        let feed = try await AF.request(
+        let result = try await AF.request(
             "https://leprosorium.ru/api/feeds/\(feed.rawValue)",
             method: .get,
             parameters: [
@@ -95,14 +98,14 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         )
         .validate()
         .serializingDecodable(
-            LepraFeed.self,
+            LepraPosts.self,
             decoder: decoder
         )
         .value
 
         await MainActor.run {
             self.feedPostsPage += 1
-            self.feedPosts += feed.posts
+            self.feedPosts += result.posts
         }
     }
 
@@ -141,7 +144,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         guard let auth else { return }
         guard let currentDomain else { return }
 
-        let feed = try await AF.request(
+        let result = try await AF.request(
             "https://leprosorium.ru/api/domains/\(currentDomain.prefix)/posts",
             method: .get,
             parameters: [
@@ -156,14 +159,37 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         )
         .validate()
         .serializingDecodable(
-            LepraFeed.self,
+            LepraPosts.self,
             decoder: decoder
         )
         .value
 
         await MainActor.run {
             self.domainPostsPage += 1
-            self.domainPosts += feed.posts
+            self.domainPosts += result.posts
+        }
+    }
+
+    func fetchComments(for post: LepraPost) async throws {
+        guard let auth else { return }
+
+        let result = try await AF.request(
+            "https://leprosorium.ru/api/posts/\(post.id)/comments",
+            method: .get,
+            headers: [
+                "X-Futuware-UID": auth.uid,
+                "X-Futuware-SID": auth.sid,
+            ]
+        )
+        .validate()
+        .serializingDecodable(
+            LepraComments.self,
+            decoder: decoder
+        )
+        .value
+
+        await MainActor.run {
+            self.postComments = result.comments
         }
     }
 }

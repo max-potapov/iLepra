@@ -29,6 +29,10 @@
 		500FE32429D896B900CC78CE /* DataRequest+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE32329D896B900CC78CE /* DataRequest+Debug.swift */; };
 		50547E1029E035C500EC51A9 /* LepraPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E0F29E035C500EC51A9 /* LepraPostsView.swift */; };
 		50547E1229E035D500EC51A9 /* LepraCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1129E035D500EC51A9 /* LepraCommentsView.swift */; };
+		50547E1429E066BB00EC51A9 /* LepraComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1329E066BB00EC51A9 /* LepraComment.swift */; };
+		50547E1629E06CC000EC51A9 /* LepraComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1529E06CC000EC51A9 /* LepraComments.swift */; };
+		507338A429E0A04700BE65F9 /* LepraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507338A329E0A04700BE65F9 /* LepraNode.swift */; };
+		509D7FC429E156AD00449CA1 /* LepraVotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509D7FC329E156AD00449CA1 /* LepraVotesView.swift */; };
 		50F973AD29D61E4500C4E5D6 /* LepraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973AC29D61E4500C4E5D6 /* LepraApp.swift */; };
 		50F973AF29D61E4500C4E5D6 /* LepraContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973AE29D61E4500C4E5D6 /* LepraContentView.swift */; };
 		50F973B129D61E4700C4E5D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F973B029D61E4700C4E5D6 /* Assets.xcassets */; };
@@ -38,7 +42,7 @@
 		50F973C529D6DE3A00C4E5D6 /* LepraGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C429D6DE3A00C4E5D6 /* LepraGender.swift */; };
 		50F973C729D6DF8100C4E5D6 /* LepraAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C629D6DF8100C4E5D6 /* LepraAuth.swift */; };
 		50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973C829D6DF9400C4E5D6 /* LepraUser.swift */; };
-		50F973CB29D6E08200C4E5D6 /* LepraFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CA29D6E08200C4E5D6 /* LepraFeed.swift */; };
+		50F973CB29D6E08200C4E5D6 /* LepraPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CA29D6E08200C4E5D6 /* LepraPosts.swift */; };
 		50F973CD29D6E09900C4E5D6 /* LepraPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CC29D6E09900C4E5D6 /* LepraPost.swift */; };
 		50F973CF29D6E11400C4E5D6 /* LepraLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973CE29D6E11400C4E5D6 /* LepraLoginView.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +66,10 @@
 		500FE32329D896B900CC78CE /* DataRequest+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+Debug.swift"; sourceTree = "<group>"; };
 		50547E0F29E035C500EC51A9 /* LepraPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraPostsView.swift; sourceTree = "<group>"; };
 		50547E1129E035D500EC51A9 /* LepraCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraCommentsView.swift; sourceTree = "<group>"; };
+		50547E1329E066BB00EC51A9 /* LepraComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraComment.swift; sourceTree = "<group>"; };
+		50547E1529E06CC000EC51A9 /* LepraComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraComments.swift; sourceTree = "<group>"; };
+		507338A329E0A04700BE65F9 /* LepraNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraNode.swift; sourceTree = "<group>"; };
+		509D7FC329E156AD00449CA1 /* LepraVotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraVotesView.swift; sourceTree = "<group>"; };
 		50F973A929D61E4500C4E5D6 /* iLepra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLepra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50F973AC29D61E4500C4E5D6 /* LepraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraApp.swift; sourceTree = "<group>"; };
 		50F973AE29D61E4500C4E5D6 /* LepraContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +80,7 @@
 		50F973C429D6DE3A00C4E5D6 /* LepraGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraGender.swift; sourceTree = "<group>"; };
 		50F973C629D6DF8100C4E5D6 /* LepraAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraAuth.swift; sourceTree = "<group>"; };
 		50F973C829D6DF9400C4E5D6 /* LepraUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraUser.swift; sourceTree = "<group>"; };
-		50F973CA29D6E08200C4E5D6 /* LepraFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFeed.swift; sourceTree = "<group>"; };
+		50F973CA29D6E08200C4E5D6 /* LepraPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraPosts.swift; sourceTree = "<group>"; };
 		50F973CC29D6E09900C4E5D6 /* LepraPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraPost.swift; sourceTree = "<group>"; };
 		50F973CE29D6E11400C4E5D6 /* LepraLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraLoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +110,7 @@
 				500B198829E0241E00FE61C8 /* LepraLoadingSectionView.swift */,
 				500B198429E0193E00FE61C8 /* LepraPostSectionView.swift */,
 				50547E0F29E035C500EC51A9 /* LepraPostsView.swift */,
+				509D7FC329E156AD00449CA1 /* LepraVotesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +127,7 @@
 			children = (
 				500FE32329D896B900CC78CE /* DataRequest+Debug.swift */,
 				500FE32129D8919700CC78CE /* LepraFormatter.swift */,
+				507338A329E0A04700BE65F9 /* LepraNode.swift */,
 				500B198229E0178600FE61C8 /* Models+Mocks.swift */,
 				500B198029E00F2D00FE61C8 /* String+HTML.swift */,
 				50022C2A29D8E5BE0056DCEE /* WebImageProvider.swift */,
@@ -174,12 +184,14 @@
 			isa = PBXGroup;
 			children = (
 				50F973C629D6DF8100C4E5D6 /* LepraAuth.swift */,
+				50547E1329E066BB00EC51A9 /* LepraComment.swift */,
+				50547E1529E06CC000EC51A9 /* LepraComments.swift */,
 				500FE30F29D82C4A00CC78CE /* LepraDomain.swift */,
 				500FE30D29D82C3F00CC78CE /* LepraDomains.swift */,
-				50F973CA29D6E08200C4E5D6 /* LepraFeed.swift */,
 				50022C1C29D8B7A90056DCEE /* LepraFeedType.swift */,
 				50F973C429D6DE3A00C4E5D6 /* LepraGender.swift */,
 				50F973CC29D6E09900C4E5D6 /* LepraPost.swift */,
+				50F973CA29D6E08200C4E5D6 /* LepraPosts.swift */,
 				50022C1A29D8B7030056DCEE /* LepraThresholdRating.swift */,
 				50F973C829D6DF9400C4E5D6 /* LepraUser.swift */,
 			);
@@ -276,6 +288,7 @@
 				50547E1029E035C500EC51A9 /* LepraPostsView.swift in Sources */,
 				50F973AF29D61E4500C4E5D6 /* LepraContentView.swift in Sources */,
 				500FE31029D82C4A00CC78CE /* LepraDomain.swift in Sources */,
+				50547E1429E066BB00EC51A9 /* LepraComment.swift in Sources */,
 				50022C2B29D8E5BE0056DCEE /* WebImageProvider.swift in Sources */,
 				50547E1229E035D500EC51A9 /* LepraCommentsView.swift in Sources */,
 				50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */,
@@ -290,14 +303,17 @@
 				500B198929E0241E00FE61C8 /* LepraLoadingSectionView.swift in Sources */,
 				50F973CD29D6E09900C4E5D6 /* LepraPost.swift in Sources */,
 				500FE32429D896B900CC78CE /* DataRequest+Debug.swift in Sources */,
-				50F973CB29D6E08200C4E5D6 /* LepraFeed.swift in Sources */,
+				50F973CB29D6E08200C4E5D6 /* LepraPosts.swift in Sources */,
 				50F973C229D6DB4500C4E5D6 /* LepraViewModel.swift in Sources */,
+				507338A429E0A04700BE65F9 /* LepraNode.swift in Sources */,
 				50F973CF29D6E11400C4E5D6 /* LepraLoginView.swift in Sources */,
 				500B197F29E00AD000FE61C8 /* LepraDomainSectionView.swift in Sources */,
 				500FE32229D8919700CC78CE /* LepraFormatter.swift in Sources */,
 				500FE31429D841B500CC78CE /* LepraDomainView.swift in Sources */,
+				50547E1629E06CC000EC51A9 /* LepraComments.swift in Sources */,
 				500FE31629D841C500CC78CE /* LepraPreferencesView.swift in Sources */,
 				50F973AD29D61E4500C4E5D6 /* LepraApp.swift in Sources */,
+				509D7FC429E156AD00449CA1 /* LepraVotesView.swift in Sources */,
 				500B198729E0229A00FE61C8 /* LepraEmptyContentPlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

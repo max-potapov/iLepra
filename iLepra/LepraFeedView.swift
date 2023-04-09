@@ -13,23 +13,25 @@ struct LepraFeedView: View {
     @State private var navigationPath: NavigationPath = .init()
 
     var body: some View {
-        if viewModel.feedPosts.isEmpty {
-            LepraEmptyContentPlaceholderView {
-                fetch()
-            }
-        } else {
-            NavigationStack(path: $navigationPath) {
-                LepraPostsView(
-                    isLoading: $isLoading,
-                    navigationPath: $navigationPath,
-                    posts: $viewModel.feedPosts,
-                    onLastSectionAppear: {
-                        fetch()
-                    }
-                )
-                .navigationTitle("Главная")
+        Group {
+            if viewModel.feedPosts.isEmpty {
+                LepraEmptyContentPlaceholderView {
+                    fetch()
+                }
+            } else {
+                NavigationStack(path: $navigationPath) {
+                    LepraPostsView(
+                        isLoading: $isLoading,
+                        navigationPath: $navigationPath,
+                        posts: $viewModel.feedPosts,
+                        onLastSectionAppear: {
+                            fetch()
+                        }
+                    )
+                }
             }
         }
+        .navigationTitle("Главная")
     }
 
     func fetch() {

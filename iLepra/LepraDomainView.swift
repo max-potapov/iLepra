@@ -14,36 +14,37 @@ struct LepraDomainView: View {
     @State private var navigationPath: NavigationPath = .init()
 
     var body: some View {
-        if viewModel.domains.isEmpty {
-            LepraEmptyContentPlaceholderView {
-                fetch()
-            }
-        } else {
-            NavigationStack(path: $navigationPath) {
-                List {
-                    ForEach($viewModel.domains, id: \.self) { $domain in
-                        LepraDomainSectionView(domain: $domain)
-                    }
-
-                    LepraLoadingSectionView(isLoading: $isLoading)
+        Group {
+            if viewModel.domains.isEmpty {
+                LepraEmptyContentPlaceholderView {
+                    fetch()
                 }
-                .navigationTitle("Подлепры")
-                .navigationDestination(for: LepraDomain.self) { domain in
-                    LepraPostsView(
-                        isLoading: $isLoadingPosts,
-                        navigationPath: $navigationPath,
-                        posts: $viewModel.domainPosts,
-                        onLastSectionAppear: {
-                            fetchPosts()
+            } else {
+                NavigationStack(path: $navigationPath) {
+                    List {
+                        ForEach($viewModel.domains, id: \.self) { $domain in
+                            LepraDomainSectionView(domain: $domain)
                         }
-                    )
-                    .onAppear {
-                        viewModel.setCurrentDomain(domain)
+                        LepraLoadingSectionView(isLoading: $isLoading)
                     }
-                    .navigationTitle(domain.title)
+                    .navigationDestination(for: LepraDomain.self) { domain in
+                        LepraPostsView(
+                            isLoading: $isLoadingPosts,
+                            navigationPath: $navigationPath,
+                            posts: $viewModel.domainPosts,
+                            onLastSectionAppear: {
+                                fetchPosts()
+                            }
+                        )
+                        .onAppear {
+                            viewModel.setCurrentDomain(domain)
+                        }
+                        .navigationTitle(domain.title)
+                    }
                 }
             }
         }
+        .navigationTitle("Подлепры")
     }
 
     func fetch() {

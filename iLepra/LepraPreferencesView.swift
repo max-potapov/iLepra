@@ -11,20 +11,23 @@ struct LepraPreferencesView: View {
     @EnvironmentObject var viewModel: LepraViewModel
 
     var body: some View {
-        if let leper = viewModel.leper {
-            VStack {
-                Text(leper.login)
-                    .font(.largeTitle)
-                Text("#" + leper.id.description)
-                    .font(.headline)
-                Text(leper.kind)
-                    .font(.subheadline)
-            }
-        } else {
-            LepraEmptyContentPlaceholderView {
-                fetch()
+        Group {
+            if let leper = viewModel.leper {
+                VStack {
+                    Text(leper.login)
+                        .font(.largeTitle)
+                    Text("#" + leper.id.description)
+                        .font(.headline)
+                    Text(leper.kind)
+                        .font(.subheadline)
+                }
+            } else {
+                LepraEmptyContentPlaceholderView {
+                    fetch()
+                }
             }
         }
+        .navigationTitle("Профиль")
     }
 
     func fetch() {

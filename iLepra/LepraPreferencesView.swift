@@ -27,7 +27,6 @@ struct LepraPreferencesView: View {
                 }
             }
         }
-        .navigationTitle("Профиль")
     }
 
     func fetch() {

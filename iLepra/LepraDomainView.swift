@@ -44,7 +44,6 @@ struct LepraDomainView: View {
                 }
             }
         }
-        .navigationTitle("Подлепры")
     }
 
     func fetch() {

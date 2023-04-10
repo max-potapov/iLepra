@@ -107,11 +107,17 @@ extension LepraContentView {
         var view: some View {
             switch self {
             case .main:
-                return AnyView(LepraFeedView())
+                return LepraFeedView()
+                    .navigationTitle(title)
+                    .eraseToAny()
             case .domains:
-                return AnyView(LepraDomainView())
+                return LepraDomainView()
+                    .navigationTitle(title)
+                    .eraseToAny()
             case .profile:
-                return AnyView(LepraPreferencesView())
+                return LepraPreferencesView()
+                    .navigationTitle(title)
+                    .eraseToAny()
             }
         }
     }

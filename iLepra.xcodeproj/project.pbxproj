@@ -10,12 +10,9 @@
 		50022C1B29D8B7030056DCEE /* LepraThresholdRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022C1A29D8B7030056DCEE /* LepraThresholdRating.swift */; };
 		50022C1D29D8B7A90056DCEE /* LepraFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022C1C29D8B7A90056DCEE /* LepraFeedType.swift */; };
 		50022C2029D8BAEF0056DCEE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C1F29D8BAEF0056DCEE /* SwiftSoup */; };
-		50022C2329D8C87D0056DCEE /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C2229D8C87D0056DCEE /* MarkdownUI */; };
-		50022C2B29D8E5BE0056DCEE /* WebImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022C2A29D8E5BE0056DCEE /* WebImageProvider.swift */; };
 		50022C2E29D8EFE80056DCEE /* HTMLEntities in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C2D29D8EFE80056DCEE /* HTMLEntities */; };
 		50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C3029D970810056DCEE /* SDWebImageSwiftUI */; };
 		500B197F29E00AD000FE61C8 /* LepraDomainSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B197E29E00AD000FE61C8 /* LepraDomainSectionView.swift */; };
-		500B198129E00F2D00FE61C8 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B198029E00F2D00FE61C8 /* String+HTML.swift */; };
 		500B198329E0178600FE61C8 /* Models+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B198229E0178600FE61C8 /* Models+Mocks.swift */; };
 		500B198529E0193E00FE61C8 /* LepraPostSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B198429E0193E00FE61C8 /* LepraPostSectionView.swift */; };
 		500B198729E0229A00FE61C8 /* LepraEmptyContentPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B198629E0229A00FE61C8 /* LepraEmptyContentPlaceholderView.swift */; };
@@ -32,6 +29,11 @@
 		50547E1429E066BB00EC51A9 /* LepraComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1329E066BB00EC51A9 /* LepraComment.swift */; };
 		50547E1629E06CC000EC51A9 /* LepraComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1529E06CC000EC51A9 /* LepraComments.swift */; };
 		507338A429E0A04700BE65F9 /* LepraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507338A329E0A04700BE65F9 /* LepraNode.swift */; };
+		5079847129E4317A00FE22C7 /* LepraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847029E4317A00FE22C7 /* LepraImageView.swift */; };
+		5079847329E431A100FE22C7 /* LepraVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847229E431A100FE22C7 /* LepraVideoView.swift */; };
+		5079847529E431B600FE22C7 /* LepraHTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847429E431B600FE22C7 /* LepraHTMLView.swift */; };
+		5079847729E46B3900FE22C7 /* View+Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847629E46B3900FE22C7 /* View+Any.swift */; };
+		5079847929E46BD500FE22C7 /* View+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847829E46BD500FE22C7 /* View+HTML.swift */; };
 		509D7FC429E156AD00449CA1 /* LepraVotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509D7FC329E156AD00449CA1 /* LepraVotesView.swift */; };
 		50F973AD29D61E4500C4E5D6 /* LepraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973AC29D61E4500C4E5D6 /* LepraApp.swift */; };
 		50F973AF29D61E4500C4E5D6 /* LepraContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F973AE29D61E4500C4E5D6 /* LepraContentView.swift */; };
@@ -50,9 +52,7 @@
 /* Begin PBXFileReference section */
 		50022C1A29D8B7030056DCEE /* LepraThresholdRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraThresholdRating.swift; sourceTree = "<group>"; };
 		50022C1C29D8B7A90056DCEE /* LepraFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFeedType.swift; sourceTree = "<group>"; };
-		50022C2A29D8E5BE0056DCEE /* WebImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageProvider.swift; sourceTree = "<group>"; };
 		500B197E29E00AD000FE61C8 /* LepraDomainSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomainSectionView.swift; sourceTree = "<group>"; };
-		500B198029E00F2D00FE61C8 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		500B198229E0178600FE61C8 /* Models+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models+Mocks.swift"; sourceTree = "<group>"; };
 		500B198429E0193E00FE61C8 /* LepraPostSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraPostSectionView.swift; sourceTree = "<group>"; };
 		500B198629E0229A00FE61C8 /* LepraEmptyContentPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraEmptyContentPlaceholderView.swift; sourceTree = "<group>"; };
@@ -69,6 +69,11 @@
 		50547E1329E066BB00EC51A9 /* LepraComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraComment.swift; sourceTree = "<group>"; };
 		50547E1529E06CC000EC51A9 /* LepraComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraComments.swift; sourceTree = "<group>"; };
 		507338A329E0A04700BE65F9 /* LepraNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraNode.swift; sourceTree = "<group>"; };
+		5079847029E4317A00FE22C7 /* LepraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraImageView.swift; sourceTree = "<group>"; };
+		5079847229E431A100FE22C7 /* LepraVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraVideoView.swift; sourceTree = "<group>"; };
+		5079847429E431B600FE22C7 /* LepraHTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraHTMLView.swift; sourceTree = "<group>"; };
+		5079847629E46B3900FE22C7 /* View+Any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Any.swift"; sourceTree = "<group>"; };
+		5079847829E46BD500FE22C7 /* View+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+HTML.swift"; sourceTree = "<group>"; };
 		509D7FC329E156AD00449CA1 /* LepraVotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraVotesView.swift; sourceTree = "<group>"; };
 		50F973A929D61E4500C4E5D6 /* iLepra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLepra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50F973AC29D61E4500C4E5D6 /* LepraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraApp.swift; sourceTree = "<group>"; };
@@ -91,7 +96,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */,
-				50022C2329D8C87D0056DCEE /* MarkdownUI in Frameworks */,
 				50022C2E29D8EFE80056DCEE /* HTMLEntities in Frameworks */,
 				50F973BD29D61FBD00C4E5D6 /* Alamofire in Frameworks */,
 				50022C2029D8BAEF0056DCEE /* SwiftSoup in Frameworks */,
@@ -107,9 +111,12 @@
 				50547E1129E035D500EC51A9 /* LepraCommentsView.swift */,
 				500B197E29E00AD000FE61C8 /* LepraDomainSectionView.swift */,
 				500B198629E0229A00FE61C8 /* LepraEmptyContentPlaceholderView.swift */,
+				5079847429E431B600FE22C7 /* LepraHTMLView.swift */,
+				5079847029E4317A00FE22C7 /* LepraImageView.swift */,
 				500B198829E0241E00FE61C8 /* LepraLoadingSectionView.swift */,
 				500B198429E0193E00FE61C8 /* LepraPostSectionView.swift */,
 				50547E0F29E035C500EC51A9 /* LepraPostsView.swift */,
+				5079847229E431A100FE22C7 /* LepraVideoView.swift */,
 				509D7FC329E156AD00449CA1 /* LepraVotesView.swift */,
 			);
 			path = Views;
@@ -129,8 +136,8 @@
 				500FE32129D8919700CC78CE /* LepraFormatter.swift */,
 				507338A329E0A04700BE65F9 /* LepraNode.swift */,
 				500B198229E0178600FE61C8 /* Models+Mocks.swift */,
-				500B198029E00F2D00FE61C8 /* String+HTML.swift */,
-				50022C2A29D8E5BE0056DCEE /* WebImageProvider.swift */,
+				5079847629E46B3900FE22C7 /* View+Any.swift */,
+				5079847829E46BD500FE22C7 /* View+HTML.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -218,7 +225,6 @@
 			packageProductDependencies = (
 				50F973BC29D61FBD00C4E5D6 /* Alamofire */,
 				50022C1F29D8BAEF0056DCEE /* SwiftSoup */,
-				50022C2229D8C87D0056DCEE /* MarkdownUI */,
 				50022C3029D970810056DCEE /* SDWebImageSwiftUI */,
 				50022C2D29D8EFE80056DCEE /* HTMLEntities */,
 			);
@@ -253,7 +259,6 @@
 			packageReferences = (
 				50F973BB29D61FBD00C4E5D6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				50022C1E29D8BAEF0056DCEE /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				50022C2129D8C87D0056DCEE /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */,
 				509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
@@ -285,14 +290,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				500B198329E0178600FE61C8 /* Models+Mocks.swift in Sources */,
+				5079847129E4317A00FE22C7 /* LepraImageView.swift in Sources */,
 				50547E1029E035C500EC51A9 /* LepraPostsView.swift in Sources */,
 				50F973AF29D61E4500C4E5D6 /* LepraContentView.swift in Sources */,
+				5079847929E46BD500FE22C7 /* View+HTML.swift in Sources */,
 				500FE31029D82C4A00CC78CE /* LepraDomain.swift in Sources */,
 				50547E1429E066BB00EC51A9 /* LepraComment.swift in Sources */,
-				50022C2B29D8E5BE0056DCEE /* WebImageProvider.swift in Sources */,
 				50547E1229E035D500EC51A9 /* LepraCommentsView.swift in Sources */,
 				50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */,
-				500B198129E00F2D00FE61C8 /* String+HTML.swift in Sources */,
 				50F973C529D6DE3A00C4E5D6 /* LepraGender.swift in Sources */,
 				50F973C729D6DF8100C4E5D6 /* LepraAuth.swift in Sources */,
 				50022C1B29D8B7030056DCEE /* LepraThresholdRating.swift in Sources */,
@@ -301,16 +306,19 @@
 				500FE30E29D82C3F00CC78CE /* LepraDomains.swift in Sources */,
 				500B198529E0193E00FE61C8 /* LepraPostSectionView.swift in Sources */,
 				500B198929E0241E00FE61C8 /* LepraLoadingSectionView.swift in Sources */,
+				5079847529E431B600FE22C7 /* LepraHTMLView.swift in Sources */,
 				50F973CD29D6E09900C4E5D6 /* LepraPost.swift in Sources */,
 				500FE32429D896B900CC78CE /* DataRequest+Debug.swift in Sources */,
 				50F973CB29D6E08200C4E5D6 /* LepraPosts.swift in Sources */,
 				50F973C229D6DB4500C4E5D6 /* LepraViewModel.swift in Sources */,
 				507338A429E0A04700BE65F9 /* LepraNode.swift in Sources */,
 				50F973CF29D6E11400C4E5D6 /* LepraLoginView.swift in Sources */,
+				5079847729E46B3900FE22C7 /* View+Any.swift in Sources */,
 				500B197F29E00AD000FE61C8 /* LepraDomainSectionView.swift in Sources */,
 				500FE32229D8919700CC78CE /* LepraFormatter.swift in Sources */,
 				500FE31429D841B500CC78CE /* LepraDomainView.swift in Sources */,
 				50547E1629E06CC000EC51A9 /* LepraComments.swift in Sources */,
+				5079847329E431A100FE22C7 /* LepraVideoView.swift in Sources */,
 				500FE31629D841C500CC78CE /* LepraPreferencesView.swift in Sources */,
 				50F973AD29D61E4500C4E5D6 /* LepraApp.swift in Sources */,
 				509D7FC429E156AD00449CA1 /* LepraVotesView.swift in Sources */,
@@ -541,14 +549,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		50022C2129D8C87D0056DCEE /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Kitura/swift-html-entities.git";
@@ -588,11 +588,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50022C1E29D8BAEF0056DCEE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		50022C2229D8C87D0056DCEE /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 50022C2129D8C87D0056DCEE /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 		50022C2D29D8EFE80056DCEE /* HTMLEntities */ = {
 			isa = XCSwiftPackageProductDependency;

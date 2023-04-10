@@ -30,11 +30,13 @@ struct LepraPostsView: View {
                     .onTapGesture {
                         navigationPath.append(post)
                     }
+                    #if os(iOS)
                     .onAppear {
                         if post == posts.last {
                             onLastSectionAppear()
                         }
                     }
+                    #endif
                 }
 
                 LepraLoadingSectionView(isLoading: $isLoading)

@@ -5,7 +5,6 @@
 //  Created by Maxim Potapov on 07.04.2023.
 //
 
-import MarkdownUI
 import SwiftUI
 
 struct LepraCommentsView: View {
@@ -32,8 +31,7 @@ struct LepraCommentsView: View {
                 List(nodes, children: \.children) { node in
                     let comment = node.value
                     VStack(alignment: .leading) {
-                        Markdown(comment.body.htmlToMarkdown())
-                            .markdownInlineImageProvider(.webImage)
+                        LepraHTMLView(html: comment.body)
                         Spacer()
                             .frame(height: 8)
                         HStack(alignment: .center) {

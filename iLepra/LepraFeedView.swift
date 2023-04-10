@@ -31,7 +31,6 @@ struct LepraFeedView: View {
                 }
             }
         }
-        .navigationTitle("Главная")
     }
 
     func fetch() {

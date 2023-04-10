@@ -5,7 +5,6 @@
 //  Created by Maxim Potapov on 07.04.2023.
 //
 
-import MarkdownUI
 import SwiftUI
 
 struct LepraPostSectionView: View {
@@ -33,8 +32,7 @@ struct LepraPostSectionView: View {
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: useHorizontalLayout ? 8 : 24) {
-                Markdown(post.body.htmlToMarkdown())
-                    .markdownInlineImageProvider(.webImage)
+                LepraHTMLView(html: post.body)
 
                 Divider()
 

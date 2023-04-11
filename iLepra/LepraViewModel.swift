@@ -86,11 +86,11 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
     func fetchFeed(_ feed: LepraFeedType = .main, threshold: LepraThresholdRating = .hardcore) async throws {
         guard let auth else { return }
 
-#if os(iOS)
-        let perPage = 3
-#elseif os(macOS)
-        let perPage = 33
-#endif
+        #if os(iOS)
+            let perPage = 3
+        #elseif os(macOS)
+            let perPage = 33
+        #endif
 
         let result = try await AF.request(
             "https://leprosorium.ru/api/feeds/\(feed.rawValue)",

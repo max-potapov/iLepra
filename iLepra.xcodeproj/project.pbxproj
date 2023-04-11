@@ -10,7 +10,6 @@
 		50022C1B29D8B7030056DCEE /* LepraThresholdRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022C1A29D8B7030056DCEE /* LepraThresholdRating.swift */; };
 		50022C1D29D8B7A90056DCEE /* LepraFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50022C1C29D8B7A90056DCEE /* LepraFeedType.swift */; };
 		50022C2029D8BAEF0056DCEE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C1F29D8BAEF0056DCEE /* SwiftSoup */; };
-		50022C2E29D8EFE80056DCEE /* HTMLEntities in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C2D29D8EFE80056DCEE /* HTMLEntities */; };
 		50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 50022C3029D970810056DCEE /* SDWebImageSwiftUI */; };
 		500B197F29E00AD000FE61C8 /* LepraDomainSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B197E29E00AD000FE61C8 /* LepraDomainSectionView.swift */; };
 		500B198329E0178600FE61C8 /* Models+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B198229E0178600FE61C8 /* Models+Mocks.swift */; };
@@ -96,7 +95,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */,
-				50022C2E29D8EFE80056DCEE /* HTMLEntities in Frameworks */,
 				50F973BD29D61FBD00C4E5D6 /* Alamofire in Frameworks */,
 				50022C2029D8BAEF0056DCEE /* SwiftSoup in Frameworks */,
 			);
@@ -226,7 +224,6 @@
 				50F973BC29D61FBD00C4E5D6 /* Alamofire */,
 				50022C1F29D8BAEF0056DCEE /* SwiftSoup */,
 				50022C3029D970810056DCEE /* SDWebImageSwiftUI */,
-				50022C2D29D8EFE80056DCEE /* HTMLEntities */,
 			);
 			productName = iLepra;
 			productReference = 50F973A929D61E4500C4E5D6 /* iLepra.app */;
@@ -260,7 +257,6 @@
 				50F973BB29D61FBD00C4E5D6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				50022C1E29D8BAEF0056DCEE /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */,
 				509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 50F973AA29D61E4500C4E5D6 /* Products */;
@@ -549,14 +545,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Kitura/swift-html-entities.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 		50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -588,11 +576,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50022C1E29D8BAEF0056DCEE /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		50022C2D29D8EFE80056DCEE /* HTMLEntities */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 50022C2C29D8EFE80056DCEE /* XCRemoteSwiftPackageReference "swift-html-entities" */;
-			productName = HTMLEntities;
 		};
 		50022C3029D970810056DCEE /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

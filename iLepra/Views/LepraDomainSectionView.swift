@@ -5,7 +5,7 @@
 //  Created by Maxim Potapov on 07.04.2023.
 //
 
-import HTMLEntities
+import SwiftSoup
 import SwiftUI
 
 struct LepraDomainSectionView: View {
@@ -27,12 +27,14 @@ struct LepraDomainSectionView: View {
                             Spacer()
                             Text(domain.prefix)
                                 .font(.title)
-                            Text(domain.title.htmlUnescape())
+                            let title = (try? Entities.unescape(domain.title)) ?? domain.title
+                            Text(title)
                                 .font(.subheadline)
                             Spacer()
                         }
                     }
-                    Text(domain.name.htmlUnescape())
+                    let name = (try? Entities.unescape(domain.name)) ?? domain.name
+                    Text(name)
                         .font(.callout)
                     Spacer()
                         .frame(height: 8)

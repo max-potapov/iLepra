@@ -30,7 +30,7 @@ final class LepraNode<Value: LepraNodeable>: LepraNodeable {
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(value.hashValue)
+        hasher.combine(value)
     }
 
     static func make<T: LepraNodeable>(from values: [T]) -> [LepraNode<T>] {
@@ -42,14 +42,14 @@ final class LepraNode<Value: LepraNodeable>: LepraNodeable {
     }
 
     private static func remap<T: LepraNodeable>(nodes: [LepraNode<T>]) -> [LepraNode<T>] {
-        let nodeMap = nodes.reduce(into: [T.ID: LepraNode<T>]()) { result, node in
+        let nodeMap: [T.ID: LepraNode<T>] = nodes.reduce(into: [:]) { result, node in
             result[node.id] = node
         }
 
-        return nodes.reduce(into: [LepraNode<T>]()) { result, node in
+        return nodes.reduce(into: []) { result, node in
             if let parentId = node.parentId, let parentNode = nodeMap[parentId] {
-                if var children = parentNode.children {
-                    children.append(node)
+                if parentNode.children != nil {
+                    parentNode.children?.append(node)
                 } else {
                     parentNode.children = [node]
                 }
@@ -60,7 +60,7 @@ final class LepraNode<Value: LepraNodeable>: LepraNodeable {
     }
 
     private static func unread<T: LepraNodeable>(nodes: [LepraNode<T>]) -> [LepraNode<T>] {
-        nodes.reduce(into: [LepraNode<T>]()) { result, node in
+        nodes.reduce(into: []) { result, node in
             if node.unread {
                 result.append(node)
             } else if let children = node.children {

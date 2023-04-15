@@ -51,7 +51,9 @@ struct LepraCommentsView: View {
                 }
             }
         }
+        #if os(iOS)
         .toolbar(.visible, for: .navigationBar)
+        #endif
         .toolbar {
             ToolbarItemGroup {
                 Toggle(isOn: $sortByDate) {

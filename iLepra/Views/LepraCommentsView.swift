@@ -12,6 +12,7 @@ struct LepraCommentsView: View {
     @Binding var post: LepraPost
     @State private var sortByDate: Bool = true
     @State private var showUnreadOnly: Bool = true
+    @State private var isChartPresented = false
     @State private var showAlert = false
 
     @State private var error: Error? {
@@ -71,7 +72,13 @@ struct LepraCommentsView: View {
                 Toggle(isOn: $showUnreadOnly) {
                     Text(showUnreadOnly ? "📬" : "📭")
                 }
+                Toggle(isOn: $isChartPresented) {
+                    Text("📊")
+                }
             }
+        }
+        .sheet(isPresented: $isChartPresented) {
+            LepraChartView(comments: .constant(viewModel.postComments))
         }
         .alert(isPresented: $showAlert) {
             Alert(

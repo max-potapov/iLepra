@@ -7,25 +7,16 @@
 
 import Foundation
 
-protocol LepraNodeable: Identifiable, Hashable {
-    var parentId: ID? { get }
-    var unread: Bool { get }
-    var created: Date { get }
-}
-
-final class LepraNode<Value: LepraNodeable>: LepraNodeable {
-    var id: Value.ID { value.id }
-    var parentId: Value.ID? { value.parentId }
-    var unread: Bool { value.unread }
-    var created: Date { value.created }
-    let value: Value
+final class LepraNode: Identifiable, Hashable {
+    var id: LepraComment.ID { value.id }
+    let value: LepraComment
     var children: [LepraNode]?
 
-    init(value: Value, children: [LepraNode]? = nil) {
+    init(value: LepraComment, children: [LepraNode]? = nil) {
         self.value = value
     }
 
-    static func == (lhs: LepraNode<Value>, rhs: LepraNode<Value>) -> Bool {
+    static func == (lhs: LepraNode, rhs: LepraNode) -> Bool {
         lhs.value == rhs.value
     }
 
@@ -33,21 +24,24 @@ final class LepraNode<Value: LepraNodeable>: LepraNodeable {
         hasher.combine(value)
     }
 
-    static func make<T: LepraNodeable>(from values: [T]) -> [LepraNode<T>] {
-        let nodes: [LepraNode<T>] = values.map { .init(value: $0) }
-        let tree: [LepraNode<T>] = remap(nodes: nodes)
-        let unread: [LepraNode<T>] = unread(nodes: tree)
-        let sorted: [LepraNode<T>] = unread.sorted { $0.created < $1.created }
+    static func make(from values: [LepraComment], sortByDate: Bool, showUnreadOnly: Bool) -> [LepraNode] {
+        let nodes: [LepraNode] = values.map { .init(value: $0) }
+        let tree: [LepraNode] = remap(nodes: nodes)
+        let unread: [LepraNode] = showUnreadOnly ? unread(nodes: tree) : tree
+        let sorted: [LepraNode] = sortByDate
+            ? unread.sorted { $0.value.dateOrder < $1.value.dateOrder }
+            : unread.sorted { $0.value.ratingOrder < $1.value.ratingOrder }
+
         return sorted
     }
 
-    private static func remap<T: LepraNodeable>(nodes: [LepraNode<T>]) -> [LepraNode<T>] {
-        let nodeMap: [T.ID: LepraNode<T>] = nodes.reduce(into: [:]) { result, node in
+    private static func remap(nodes: [LepraNode]) -> [LepraNode] {
+        let nodeMap: [LepraComment.ID: LepraNode] = nodes.reduce(into: [:]) { result, node in
             result[node.id] = node
         }
 
         return nodes.reduce(into: []) { result, node in
-            if let parentId = node.parentId, let parentNode = nodeMap[parentId] {
+            if let parentId = node.value.parentId, let parentNode = nodeMap[parentId] {
                 if parentNode.children != nil {
                     parentNode.children?.append(node)
                 } else {
@@ -59,9 +53,9 @@ final class LepraNode<Value: LepraNodeable>: LepraNodeable {
         }
     }
 
-    private static func unread<T: LepraNodeable>(nodes: [LepraNode<T>]) -> [LepraNode<T>] {
+    private static func unread(nodes: [LepraNode]) -> [LepraNode] {
         nodes.reduce(into: []) { result, node in
-            if node.unread {
+            if node.value.unread {
                 result.append(node)
             } else if let children = node.children {
                 let unreadChildren = unread(nodes: children)

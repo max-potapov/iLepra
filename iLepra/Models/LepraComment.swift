@@ -26,5 +26,3 @@ struct LepraComment: Codable, Identifiable, Hashable {
     let user: LepraUser
     let userVote: Int?
 }
-
-extension LepraComment: LepraNodeable {}

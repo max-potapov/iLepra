@@ -17,10 +17,21 @@ struct LepraImageView: View {
         #if os(iOS)
         .fullScreenCover(isPresented: $isPresented) {
             ZStack {
-                Color.black
-                imageView
+                Group {
+                    Color.black
+                    imageView
+                }
+                .ignoresSafeArea()
+                VStack {
+                    HStack {
+                        Spacer()
+                        ShareLink(item: url) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                    Spacer()
+                }
             }
-            .ignoresSafeArea()
         }
         #endif
     }

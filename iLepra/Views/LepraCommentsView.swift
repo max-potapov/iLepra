@@ -10,6 +10,8 @@ import SwiftUI
 struct LepraCommentsView: View {
     @EnvironmentObject var viewModel: LepraViewModel
     @Binding var post: LepraPost
+    @State private var sortByDate: Bool = true
+    @State private var showUnreadOnly: Bool = true
     @State private var showAlert = false
 
     @State private var error: Error? {
@@ -19,8 +21,12 @@ struct LepraCommentsView: View {
     }
 
     var body: some View {
-        ZStack {
-            let nodes = LepraNode<LepraComment>.make(from: viewModel.postComments)
+        Group {
+            let nodes: [LepraNode] = LepraNode.make(
+                from: viewModel.postComments,
+                sortByDate: sortByDate,
+                showUnreadOnly: showUnreadOnly
+            )
 
             if viewModel.postComments.isEmpty {
                 LepraEmptyContentPlaceholderView(onAppear: {})
@@ -45,6 +51,26 @@ struct LepraCommentsView: View {
                 }
             }
         }
+        .toolbar(.visible, for: .navigationBar)
+        .toolbar {
+            ToolbarItemGroup {
+                Toggle(isOn: $sortByDate) {
+                    Text("🕓")
+                }
+                let sortByRating = Binding(
+                    get: { !sortByDate },
+                    set: { _ in sortByDate.toggle() }
+                )
+                Toggle(isOn: sortByRating) {
+                    Text("🏆")
+                }
+            }
+            ToolbarItemGroup {
+                Toggle(isOn: $showUnreadOnly) {
+                    Text(showUnreadOnly ? "📬" : "📭")
+                }
+            }
+        }
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("( ‾́ ◡ ‾́ )"),
@@ -61,13 +87,14 @@ struct LepraCommentsView: View {
                 self.error = error
             }
         }
-        .navigationTitle("💩🪭🤬")
     }
 }
 
 struct LepraCommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraCommentsView(post: .constant(.init()))
-            .environmentObject(LepraViewModel())
+        NavigationStack {
+            LepraCommentsView(post: .constant(.init()))
+                .environmentObject(LepraViewModel())
+        }
     }
 }

@@ -26,3 +26,9 @@ struct LepraComment: Codable, Identifiable, Hashable {
     let user: LepraUser
     let userVote: Int?
 }
+
+extension [LepraComment] {
+    var avgRating: Int {
+        map(\.rating).reduce(0, +) / count
+    }
+}

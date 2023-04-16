@@ -83,7 +83,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         }
     }
 
-    func fetchFeed(_ feed: LepraFeedType = .main, threshold: LepraThresholdRating = .hardcore) async throws {
+    func fetchFeed(_ feed: LepraFeedType = .main, threshold: LepraThresholdRating = .nightmare) async throws {
         guard let auth else { return }
 
         #if os(iOS)
@@ -149,7 +149,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         domainPosts = []
     }
 
-    func fetchPosts(threshold: LepraThresholdRating = .hardcore) async throws {
+    func fetchPosts(threshold: LepraThresholdRating = .nightmare) async throws {
         guard let auth else { return }
         guard let currentDomain else { return }
 

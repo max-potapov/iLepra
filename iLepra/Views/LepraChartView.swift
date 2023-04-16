@@ -46,6 +46,9 @@ struct LepraChartView: View {
                     .listRowSeparator(.hidden)
                 }
             }
+            .onTapGesture {
+                dismiss()
+            }
             #if os(macOS)
             .frame(minWidth: 500, minHeight: 500)
             #endif

@@ -9,60 +9,74 @@ import Charts
 import SwiftUI
 
 struct LepraChartView: View {
+    @Environment(\.dismiss) private var dismiss
     @Binding var comments: [LepraComment]
-    private let limit: Int = 10
 
-    private var grouped: [LepraUser: [LepraComment]] {
-        Dictionary(grouping: comments, by: \.user)
+    private let limit: Int = 10
+    private let grouped: [LepraUser: [LepraComment]]
+    private let rated: [(key: LepraUser, value: [LepraComment])]
+    private let topCount: [BarData]
+    private let topPositive: [BarData]
+    private let topNegative: [BarData]
+
+    var body: some View {
+        VStack {
+            List {
+                let tops = [topCount, topPositive, topNegative]
+                ForEach(tops.indices, id: \.self) { index in
+                    Section {
+                        switch index {
+                        case 0:
+                            Text("По количеству")
+                        case 1:
+                            Text("Верх рейтинга [sum(rating)/count]")
+                        case 2:
+                            Text("Низ рейтинга [sum(rating)/count]")
+                        default:
+                            EmptyView()
+                        }
+                        Chart(tops[index]) { bar in
+                            BarMark(
+                                x: .value("x", bar.label),
+                                y: .value("y", bar.value)
+                            )
+                            .foregroundStyle(by: .value("color", bar.value))
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                }
+            }
+            #if os(macOS)
+            .frame(minWidth: 500, minHeight: 500)
+            #endif
+            #if os(macOS)
+                Button("Закрыть") {
+                    dismiss()
+                }
+                .padding()
+            #endif
+        }
     }
 
-    private var topCount: [BarData] {
-        grouped
+    init(comments: Binding<[LepraComment]>) {
+        _comments = comments
+
+        grouped = Dictionary(grouping: comments.wrappedValue, by: \.user)
+        rated = grouped.sorted { $0.value.avgRating > $1.value.avgRating }
+
+        topCount = grouped
             .sorted { $0.value.count > $1.value.count }
             .prefix(limit)
             .map { .init(label: $0.key.login, value: $0.value.count) }
-    }
 
-    private var topPositive: [BarData] {
-        grouped
-            .sorted { $0.value.avgRating > $1.value.avgRating }
+        topPositive = rated
             .prefix(limit)
             .map { .init(label: $0.key.login, value: $0.value.avgRating) }
-    }
 
-    private var topNegative: [BarData] {
-        grouped
-            .sorted { $0.value.avgRating < $1.value.avgRating }
-            .prefix(limit)
+        topNegative = rated
+            .suffix(limit)
+            .reversed()
             .map { .init(label: $0.key.login, value: $0.value.avgRating) }
-    }
-
-    var body: some View {
-        List {
-            let tops = [topCount, topPositive, topNegative]
-            ForEach(tops.indices, id: \.self) { index in
-                Section {
-                    switch index {
-                    case 0:
-                        Text("По количеству")
-                    case 1:
-                        Text("В плюсах")
-                    case 2:
-                        Text("В минусах")
-                    default:
-                        Text("ХЗ")
-                    }
-                    Chart(tops[index]) { bar in
-                        BarMark(
-                            x: .value("x", bar.label),
-                            y: .value("y", bar.value)
-                        )
-                        .foregroundStyle(by: .value("color", bar.value))
-                    }
-                }
-                .listRowSeparator(.hidden)
-            }
-        }
     }
 }
 

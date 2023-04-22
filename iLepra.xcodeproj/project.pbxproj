@@ -25,6 +25,7 @@
 		500FE32429D896B900CC78CE /* DataRequest+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE32329D896B900CC78CE /* DataRequest+Debug.swift */; };
 		5014C5BA29EABB62006045BC /* LepraChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5014C5B929EABB62006045BC /* LepraChartView.swift */; };
 		501E772929F3D5F000786232 /* Color+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E772829F3D5F000786232 /* Color+Random.swift */; };
+		501E772C29F3DF5800786232 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 501E772B29F3DF5800786232 /* Algorithms */; };
 		50547E1029E035C500EC51A9 /* LepraPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E0F29E035C500EC51A9 /* LepraPostsView.swift */; };
 		50547E1229E035D500EC51A9 /* LepraCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1129E035D500EC51A9 /* LepraCommentsView.swift */; };
 		50547E1429E066BB00EC51A9 /* LepraComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1329E066BB00EC51A9 /* LepraComment.swift */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				501E772C29F3DF5800786232 /* Algorithms in Frameworks */,
 				50022C3129D970810056DCEE /* SDWebImageSwiftUI in Frameworks */,
 				50F973BD29D61FBD00C4E5D6 /* Alamofire in Frameworks */,
 				50022C2029D8BAEF0056DCEE /* SwiftSoup in Frameworks */,
@@ -230,6 +232,7 @@
 				50F973BC29D61FBD00C4E5D6 /* Alamofire */,
 				50022C1F29D8BAEF0056DCEE /* SwiftSoup */,
 				50022C3029D970810056DCEE /* SDWebImageSwiftUI */,
+				501E772B29F3DF5800786232 /* Algorithms */,
 			);
 			productName = iLepra;
 			productReference = 50F973A929D61E4500C4E5D6 /* iLepra.app */;
@@ -264,6 +267,7 @@
 				50022C1E29D8BAEF0056DCEE /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				501E772A29F3DF5800786232 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 50F973AA29D61E4500C4E5D6 /* Products */;
 			projectDirPath = "";
@@ -561,6 +565,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		501E772A29F3DF5800786232 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		509F277629DA289900CBFFB1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -589,6 +601,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50022C2F29D970800056DCEE /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		501E772B29F3DF5800786232 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 501E772A29F3DF5800786232 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 		509F277729DA28A500CBFFB1 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

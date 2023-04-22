@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Algorithms
 import Foundation
 import SDWebImageSwiftUI
 import SwiftUI
@@ -87,7 +88,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         guard let auth else { return }
 
         #if os(iOS)
-            let perPage = 3
+            let perPage = 13
         #elseif os(macOS)
             let perPage = 33
         #endif
@@ -112,9 +113,10 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         )
         .value
 
+        let unique = Array((feedPosts + result.posts).uniqued())
         await MainActor.run {
-            self.feedPostsPage += 1
-            self.feedPosts += result.posts
+            feedPostsPage += 1
+            feedPosts = unique
         }
     }
 
@@ -154,7 +156,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         guard let currentDomain else { return }
 
         #if os(iOS)
-            let perPage = 3
+            let perPage = 13
         #elseif os(macOS)
             let perPage = 33
         #endif
@@ -179,9 +181,10 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         )
         .value
 
+        let unique = Array((domainPosts + result.posts).uniqued())
         await MainActor.run {
-            self.domainPostsPage += 1
-            self.domainPosts += result.posts
+            domainPostsPage += 1
+            domainPosts = unique
         }
     }
 
@@ -204,7 +207,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         .value
 
         await MainActor.run {
-            self.postComments = result.comments
+            postComments = result.comments
         }
     }
 
@@ -227,7 +230,7 @@ final class LepraViewModel: ObservableObject, @unchecked Sendable {
         .value
 
         await MainActor.run {
-            self.leper = result
+            leper = result
         }
     }
 }

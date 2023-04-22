@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraCommentsView: View {
-    @EnvironmentObject private var viewModel: LepraViewModel
+    @StateObject private var viewModel: LepraCommentViewModel = .init()
     @Binding var post: LepraPost
     @State private var sortByDate: Bool = true
     @State private var showUnreadOnly: Bool = true
@@ -24,14 +24,16 @@ struct LepraCommentsView: View {
     var body: some View {
         Group {
             let nodes: [LepraNode] = LepraNode.make(
-                from: viewModel.postComments,
+                from: viewModel.comments,
                 sortByDate: sortByDate,
                 showUnreadOnly: showUnreadOnly
             )
 
-            if viewModel.postComments.isEmpty {
-                LepraEmptyContentPlaceholderView(onAppear: {})
-            } else if nodes.isEmpty, !viewModel.postComments.isEmpty {
+            if viewModel.comments.isEmpty {
+                LepraEmptyContentPlaceholderView {
+                    fetch()
+                }
+            } else if nodes.isEmpty, !viewModel.comments.isEmpty {
                 Text("Тут больше нет непрочитанных комментариев, %username%!")
                     .font(.headline)
             } else {
@@ -78,7 +80,7 @@ struct LepraCommentsView: View {
             }
         }
         .sheet(isPresented: $isChartPresented) {
-            LepraChartView(comments: .constant(viewModel.postComments))
+            LepraChartView(comments: .constant(viewModel.comments))
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -89,12 +91,19 @@ struct LepraCommentsView: View {
                 }
             )
         }
-        .task {
-            do {
-                try await viewModel.fetchComments(for: post)
-            } catch {
-                self.error = error
-            }
+    }
+
+    private func fetch() {
+        Task {
+            await fetch()
+        }
+    }
+
+    @MainActor func fetch() async {
+        do {
+            try await viewModel.fetch(for: post)
+        } catch {
+            self.error = error
         }
     }
 }
@@ -103,7 +112,6 @@ struct LepraCommentsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             LepraCommentsView(post: .constant(.init()))
-                .environmentObject(LepraViewModel())
         }
     }
 }

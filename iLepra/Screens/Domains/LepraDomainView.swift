@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LepraDomainView: View {
-    @EnvironmentObject private var viewModel: LepraViewModel
+    @StateObject private var viewModel: LepraDomainViewModel = .init()
+    @Binding private var shouldReload: Bool
     @State private var isLoading: Bool = false
     @State private var isLoadingPosts: Bool = false
     @State private var navigationPath: NavigationPath = .init()
@@ -31,7 +32,7 @@ struct LepraDomainView: View {
                         LepraPostsView(
                             isLoading: $isLoadingPosts,
                             navigationPath: $navigationPath,
-                            posts: $viewModel.domainPosts,
+                            posts: $viewModel.posts,
                             onLastSectionAppear: {
                                 fetchPosts()
                             }
@@ -44,6 +45,16 @@ struct LepraDomainView: View {
                 }
             }
         }
+        .onChange(of: shouldReload) { reload in
+            if reload {
+                navigationPath = .init()
+                viewModel.reset()
+            }
+        }
+    }
+
+    init(shouldReload: Binding<Bool>) {
+        _shouldReload = shouldReload
     }
 
     private func fetch() {
@@ -57,8 +68,9 @@ struct LepraDomainView: View {
         guard !isLoading else { return }
 
         isLoading = true
-        try? await viewModel.fetchDomains()
+        try? await viewModel.fetch()
         isLoading = false
+        shouldReload = false
     }
 
     private func fetchPosts() {
@@ -79,7 +91,8 @@ struct LepraDomainView: View {
 
 struct LepraDomainView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraDomainView()
-            .environmentObject(LepraViewModel())
+        LepraDomainView(
+            shouldReload: .constant(false)
+        )
     }
 }

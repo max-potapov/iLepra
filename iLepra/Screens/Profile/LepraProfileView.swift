@@ -1,5 +1,5 @@
 //
-//  LepraPreferencesView.swift
+//  LepraProfileView.swift
 //  iLepra
 //
 //  Created by Maxim Potapov on 01.04.2023.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct LepraPreferencesView: View {
-    @EnvironmentObject private var viewModel: LepraViewModel
+struct LepraProfileView: View {
+    @StateObject private var viewModel: LepraProfileViewModel = .init()
+    @Binding private var shouldReload: Bool
 
     var body: some View {
         Group {
@@ -27,18 +28,34 @@ struct LepraPreferencesView: View {
                 }
             }
         }
+        .onChange(of: shouldReload) { reload in
+            if reload {
+                viewModel.reset()
+            }
+        }
     }
 
-    func fetch() {
+    init(shouldReload: Binding<Bool>) {
+        _shouldReload = shouldReload
+    }
+
+    private func fetch() {
         Task {
-            try await viewModel.fetchMe()
+            await fetch()
         }
+    }
+
+    @MainActor
+    private func fetch() async {
+        try? await viewModel.fetch()
+        shouldReload = false
     }
 }
 
-struct LepraPreferencesView_Previews: PreviewProvider {
+struct LepraProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraPreferencesView()
-            .environmentObject(LepraViewModel())
+        LepraProfileView(
+            shouldReload: .constant(false)
+        )
     }
 }

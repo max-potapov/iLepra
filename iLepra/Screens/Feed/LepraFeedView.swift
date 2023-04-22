@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct LepraFeedView: View {
-    @EnvironmentObject private var viewModel: LepraViewModel
+    @StateObject private var viewModel: LepraFeedViewModel = .init()
+    @Binding private var shouldReload: Bool
     @State private var isLoading = false
     @State private var navigationPath: NavigationPath = .init()
 
     var body: some View {
         Group {
-            if viewModel.feedPosts.isEmpty {
+            if viewModel.posts.isEmpty {
                 LepraEmptyContentPlaceholderView {
                     fetch()
                 }
@@ -23,7 +24,7 @@ struct LepraFeedView: View {
                     LepraPostsView(
                         isLoading: $isLoading,
                         navigationPath: $navigationPath,
-                        posts: $viewModel.feedPosts,
+                        posts: $viewModel.posts,
                         onLastSectionAppear: {
                             fetch()
                         }
@@ -31,6 +32,16 @@ struct LepraFeedView: View {
                 }
             }
         }
+        .onChange(of: shouldReload) { reload in
+            if reload {
+                navigationPath = .init()
+                viewModel.reset()
+            }
+        }
+    }
+
+    init(shouldReload: Binding<Bool>) {
+        _shouldReload = shouldReload
     }
 
     private func fetch() {
@@ -44,14 +55,16 @@ struct LepraFeedView: View {
         guard !isLoading else { return }
 
         isLoading = true
-        try? await viewModel.fetchFeed()
+        try? await viewModel.fetch()
         isLoading = false
+        shouldReload = false
     }
 }
 
 struct LepraFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraFeedView()
-            .environmentObject(LepraViewModel())
+        LepraFeedView(
+            shouldReload: .constant(false)
+        )
     }
 }

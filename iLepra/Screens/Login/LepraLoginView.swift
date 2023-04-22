@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraLoginView: View {
-    @EnvironmentObject private var viewModel: LepraViewModel
+    @EnvironmentObject private var viewModel: LepraLoginViewModel
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
@@ -76,6 +76,6 @@ struct LepraLoginView: View {
 struct LepraLoginView_Previews: PreviewProvider {
     static var previews: some View {
         LepraLoginView()
-            .environmentObject(LepraViewModel())
+            .environmentObject(LepraLoginViewModel())
     }
 }

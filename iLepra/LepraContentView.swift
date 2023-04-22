@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct LepraContentView: View {
-    @EnvironmentObject private var viewModel: LepraViewModel
-    @State private var selection: Tab = .main
-    @State private var sidebarSelection: Tab? = .main
+    @State private var selection: Tab = .feed
+    @State private var sidebarSelection: Tab? = .feed
     #if os(iOS)
         @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
@@ -23,13 +22,17 @@ struct LepraContentView: View {
         #endif
     }
 
+    @State private var shouldReloadMain: Bool = false
+    @State private var shouldReloadDomains: Bool = false
+    @State private var shouldReloadProfile: Bool = false
+
     var body: some View {
         Group {
             if useSideBar {
                 NavigationSplitView {
                     sidebarView
                 } detail: {
-                    selection.view
+                    tabView(selection)
                 }
             } else {
                 tabBarView
@@ -37,12 +40,12 @@ struct LepraContentView: View {
         }
         .onTapGesture(count: 2) {
             switch selection {
-            case .main:
-                viewModel.feedPosts = []
+            case .feed:
+                shouldReloadMain = true
             case .domains:
-                viewModel.domainPosts = []
+                shouldReloadDomains = true
             case .profile:
-                viewModel.leper = .none
+                shouldReloadProfile = true
             }
         }
     }
@@ -54,7 +57,7 @@ struct LepraContentView: View {
             }
         }
         .onChange(of: sidebarSelection) { tab in
-            selection = tab ?? .main
+            selection = tab ?? .feed
         }
         .navigationTitle("iLepra")
         #if os(macOS)
@@ -65,7 +68,7 @@ struct LepraContentView: View {
     private var tabBarView: some View {
         TabView(selection: $selection) {
             ForEach(Tab.allCases, id: \.self) { tab in
-                tab.view.tag(tab).tabItem {
+                tabView(tab).tag(tab).tabItem {
                     Label(tab.title, systemImage: tab.imageName)
                 }
             }
@@ -74,17 +77,34 @@ struct LepraContentView: View {
             sidebarSelection = tab
         }
     }
+
+    private func tabView(_ tab: Tab) -> some View {
+        switch tab {
+        case .feed:
+            return LepraFeedView(shouldReload: $shouldReloadMain)
+                .navigationTitle(tab.title)
+                .eraseToAny()
+        case .domains:
+            return LepraDomainView(shouldReload: $shouldReloadDomains)
+                .navigationTitle(tab.title)
+                .eraseToAny()
+        case .profile:
+            return LepraProfileView(shouldReload: $shouldReloadProfile)
+                .navigationTitle(tab.title)
+                .eraseToAny()
+        }
+    }
 }
 
 extension LepraContentView {
     private enum Tab: Hashable, CaseIterable {
-        case main
+        case feed
         case domains
         case profile
 
         var title: String {
             switch self {
-            case .main:
+            case .feed:
                 return "Главная"
             case .domains:
                 return "Подлепры"
@@ -95,29 +115,12 @@ extension LepraContentView {
 
         var imageName: String {
             switch self {
-            case .main:
+            case .feed:
                 return "house"
             case .domains:
                 return "list.dash"
             case .profile:
                 return "brain.head.profile"
-            }
-        }
-
-        var view: some View {
-            switch self {
-            case .main:
-                return LepraFeedView()
-                    .navigationTitle(title)
-                    .eraseToAny()
-            case .domains:
-                return LepraDomainView()
-                    .navigationTitle(title)
-                    .eraseToAny()
-            case .profile:
-                return LepraPreferencesView()
-                    .navigationTitle(title)
-                    .eraseToAny()
             }
         }
     }
@@ -126,6 +129,5 @@ extension LepraContentView {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         LepraContentView()
-            .environmentObject(LepraViewModel())
     }
 }

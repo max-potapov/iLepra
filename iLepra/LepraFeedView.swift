@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraFeedView: View {
-    @EnvironmentObject var viewModel: LepraViewModel
+    @EnvironmentObject private var viewModel: LepraViewModel
     @State private var isLoading = false
     @State private var navigationPath: NavigationPath = .init()
 
@@ -33,18 +33,19 @@ struct LepraFeedView: View {
         }
     }
 
-    func fetch() {
+    private func fetch() {
+        Task {
+            await fetch()
+        }
+    }
+
+    @MainActor
+    private func fetch() async {
         guard !isLoading else { return }
 
-        defer {
-            isLoading = false
-        }
-
         isLoading = true
-
-        Task {
-            try await viewModel.fetchFeed()
-        }
+        try? await viewModel.fetchFeed()
+        isLoading = false
     }
 }
 

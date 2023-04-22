@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraCommentsView: View {
-    @EnvironmentObject var viewModel: LepraViewModel
+    @EnvironmentObject private var viewModel: LepraViewModel
     @Binding var post: LepraPost
     @State private var sortByDate: Bool = true
     @State private var showUnreadOnly: Bool = true

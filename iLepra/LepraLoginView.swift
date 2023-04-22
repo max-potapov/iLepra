@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraLoginView: View {
-    @EnvironmentObject var viewModel: LepraViewModel
+    @EnvironmentObject private var viewModel: LepraViewModel
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
@@ -50,11 +50,9 @@ struct LepraLoginView: View {
             Spacer()
                 .frame(height: 24)
             Button("YARRR!") {
-                isLoading = true
                 Task {
-                    try await viewModel.login(username: username, password: password)
+                    await login()
                 }
-                isLoading = false
             }
             .disabled(isLoading)
             .tint(.accentColor)
@@ -63,6 +61,15 @@ struct LepraLoginView: View {
                 .frame(height: 24)
         }
         .padding()
+    }
+
+    @MainActor
+    private func login() async {
+        guard !isLoading else { return }
+
+        isLoading = true
+        try? await viewModel.login(username: username, password: password)
+        isLoading = false
     }
 }
 

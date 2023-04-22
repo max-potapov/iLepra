@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraDomainView: View {
-    @EnvironmentObject var viewModel: LepraViewModel
+    @EnvironmentObject private var viewModel: LepraViewModel
     @State private var isLoading: Bool = false
     @State private var isLoadingPosts: Bool = false
     @State private var navigationPath: NavigationPath = .init()
@@ -46,32 +46,34 @@ struct LepraDomainView: View {
         }
     }
 
-    func fetch() {
-        guard !isLoading else { return }
-
-        defer {
-            isLoading = false
-        }
-
-        isLoading = true
-
+    private func fetch() {
         Task {
-            try await viewModel.fetchDomains()
+            await fetch()
         }
     }
 
-    func fetchPosts() {
+    @MainActor
+    private func fetch() async {
+        guard !isLoading else { return }
+
+        isLoading = true
+        try? await viewModel.fetchDomains()
+        isLoading = false
+    }
+
+    private func fetchPosts() {
+        Task {
+            await fetchPosts()
+        }
+    }
+
+    @MainActor
+    private func fetchPosts() async {
         guard !isLoadingPosts else { return }
 
-        defer {
-            isLoadingPosts = false
-        }
-
         isLoadingPosts = true
-
-        Task {
-            try await viewModel.fetchPosts()
-        }
+        try? await viewModel.fetchPosts()
+        isLoadingPosts = false
     }
 }
 

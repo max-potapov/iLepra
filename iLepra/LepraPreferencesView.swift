@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraPreferencesView: View {
-    @EnvironmentObject var viewModel: LepraViewModel
+    @EnvironmentObject private var viewModel: LepraViewModel
 
     var body: some View {
         Group {

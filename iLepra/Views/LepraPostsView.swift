@@ -42,7 +42,9 @@ struct LepraPostsView: View {
                 LepraLoadingSectionView(isLoading: $isLoading)
             }
             .navigationDestination(for: LepraPost.self) { post in
-                LepraCommentsView(post: .constant(post))
+                LepraCommentsView(
+                    post: .constant(post)
+                )
             }
         }
     }

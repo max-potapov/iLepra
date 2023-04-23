@@ -19,7 +19,7 @@
 		500FE30E29D82C3F00CC78CE /* LepraDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE30D29D82C3F00CC78CE /* LepraDomains.swift */; };
 		500FE31029D82C4A00CC78CE /* LepraDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE30F29D82C4A00CC78CE /* LepraDomain.swift */; };
 		500FE31229D841A300CC78CE /* LepraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31129D841A300CC78CE /* LepraFeedView.swift */; };
-		500FE31429D841B500CC78CE /* LepraDomainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31329D841B500CC78CE /* LepraDomainView.swift */; };
+		500FE31429D841B500CC78CE /* LepraDomainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31329D841B500CC78CE /* LepraDomainsView.swift */; };
 		500FE31629D841C500CC78CE /* LepraProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE31529D841C500CC78CE /* LepraProfileView.swift */; };
 		500FE32229D8919700CC78CE /* LepraFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE32129D8919700CC78CE /* LepraFormatter.swift */; };
 		500FE32429D896B900CC78CE /* DataRequest+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FE32329D896B900CC78CE /* DataRequest+Debug.swift */; };
@@ -30,7 +30,7 @@
 		5052D4CD29F40B9700D7B849 /* LepraCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4CC29F40B9700D7B849 /* LepraCache.swift */; };
 		5052D4CF29F4162E00D7B849 /* ProcessInfo+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4CE29F4162E00D7B849 /* ProcessInfo+Preview.swift */; };
 		5052D4D329F4177900D7B849 /* LepraLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4D229F4177900D7B849 /* LepraLoginViewModel.swift */; };
-		5052D4D829F417E600D7B849 /* LepraDomainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4D729F417E600D7B849 /* LepraDomainViewModel.swift */; };
+		5052D4D829F417E600D7B849 /* LepraDomainsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4D729F417E600D7B849 /* LepraDomainsViewModel.swift */; };
 		5052D4DC29F46AB700D7B849 /* LepraProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4DB29F46AB700D7B849 /* LepraProfileViewModel.swift */; };
 		5052D4DE29F46AFD00D7B849 /* LepraFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4DD29F46AFD00D7B849 /* LepraFeedViewModel.swift */; };
 		5052D4E129F46B3400D7B849 /* LepraCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5052D4E029F46B3400D7B849 /* LepraCommentsViewModel.swift */; };
@@ -38,6 +38,7 @@
 		50547E1229E035D500EC51A9 /* LepraCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1129E035D500EC51A9 /* LepraCommentsView.swift */; };
 		50547E1429E066BB00EC51A9 /* LepraComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1329E066BB00EC51A9 /* LepraComment.swift */; };
 		50547E1629E06CC000EC51A9 /* LepraComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50547E1529E06CC000EC51A9 /* LepraComments.swift */; };
+		506C4EA629F5645300B39A93 /* LepraTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C4EA529F5645300B39A93 /* LepraTabView.swift */; };
 		507338A429E0A04700BE65F9 /* LepraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507338A329E0A04700BE65F9 /* LepraNode.swift */; };
 		5079847129E4317A00FE22C7 /* LepraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847029E4317A00FE22C7 /* LepraImageView.swift */; };
 		5079847329E431A100FE22C7 /* LepraVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079847229E431A100FE22C7 /* LepraVideoView.swift */; };
@@ -69,7 +70,7 @@
 		500FE30D29D82C3F00CC78CE /* LepraDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomains.swift; sourceTree = "<group>"; };
 		500FE30F29D82C4A00CC78CE /* LepraDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomain.swift; sourceTree = "<group>"; };
 		500FE31129D841A300CC78CE /* LepraFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFeedView.swift; sourceTree = "<group>"; };
-		500FE31329D841B500CC78CE /* LepraDomainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomainView.swift; sourceTree = "<group>"; };
+		500FE31329D841B500CC78CE /* LepraDomainsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomainsView.swift; sourceTree = "<group>"; };
 		500FE31529D841C500CC78CE /* LepraProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraProfileView.swift; sourceTree = "<group>"; };
 		500FE32129D8919700CC78CE /* LepraFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFormatter.swift; sourceTree = "<group>"; };
 		500FE32329D896B900CC78CE /* DataRequest+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+Debug.swift"; sourceTree = "<group>"; };
@@ -79,7 +80,7 @@
 		5052D4CC29F40B9700D7B849 /* LepraCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraCache.swift; sourceTree = "<group>"; };
 		5052D4CE29F4162E00D7B849 /* ProcessInfo+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProcessInfo+Preview.swift"; sourceTree = "<group>"; };
 		5052D4D229F4177900D7B849 /* LepraLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraLoginViewModel.swift; sourceTree = "<group>"; };
-		5052D4D729F417E600D7B849 /* LepraDomainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomainViewModel.swift; sourceTree = "<group>"; };
+		5052D4D729F417E600D7B849 /* LepraDomainsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraDomainsViewModel.swift; sourceTree = "<group>"; };
 		5052D4DB29F46AB700D7B849 /* LepraProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraProfileViewModel.swift; sourceTree = "<group>"; };
 		5052D4DD29F46AFD00D7B849 /* LepraFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraFeedViewModel.swift; sourceTree = "<group>"; };
 		5052D4E029F46B3400D7B849 /* LepraCommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraCommentsViewModel.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		50547E1129E035D500EC51A9 /* LepraCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraCommentsView.swift; sourceTree = "<group>"; };
 		50547E1329E066BB00EC51A9 /* LepraComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraComment.swift; sourceTree = "<group>"; };
 		50547E1529E06CC000EC51A9 /* LepraComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraComments.swift; sourceTree = "<group>"; };
+		506C4EA529F5645300B39A93 /* LepraTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraTabView.swift; sourceTree = "<group>"; };
 		507338A329E0A04700BE65F9 /* LepraNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraNode.swift; sourceTree = "<group>"; };
 		5079847029E4317A00FE22C7 /* LepraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraImageView.swift; sourceTree = "<group>"; };
 		5079847229E431A100FE22C7 /* LepraVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraVideoView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				500B198829E0241E00FE61C8 /* LepraLoadingSectionView.swift */,
 				500B198429E0193E00FE61C8 /* LepraPostSectionView.swift */,
 				50547E0F29E035C500EC51A9 /* LepraPostsView.swift */,
+				506C4EA529F5645300B39A93 /* LepraTabView.swift */,
 				5079847229E431A100FE22C7 /* LepraVideoView.swift */,
 				509D7FC329E156AD00449CA1 /* LepraVotesView.swift */,
 			);
@@ -196,8 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				500B197E29E00AD000FE61C8 /* LepraDomainSectionView.swift */,
-				500FE31329D841B500CC78CE /* LepraDomainView.swift */,
-				5052D4D729F417E600D7B849 /* LepraDomainViewModel.swift */,
+				5052D4D729F417E600D7B849 /* LepraDomainsViewModel.swift */,
+				500FE31329D841B500CC78CE /* LepraDomainsView.swift */,
 			);
 			path = Domains;
 			sourceTree = "<group>";
@@ -375,7 +378,7 @@
 				50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */,
 				5052D4E129F46B3400D7B849 /* LepraCommentsViewModel.swift in Sources */,
 				50F973C529D6DE3A00C4E5D6 /* LepraGender.swift in Sources */,
-				5052D4D829F417E600D7B849 /* LepraDomainViewModel.swift in Sources */,
+				5052D4D829F417E600D7B849 /* LepraDomainsViewModel.swift in Sources */,
 				50F973C729D6DF8100C4E5D6 /* LepraAuth.swift in Sources */,
 				50022C1B29D8B7030056DCEE /* LepraThresholdRating.swift in Sources */,
 				501E772929F3D5F000786232 /* Color+Random.swift in Sources */,
@@ -395,11 +398,12 @@
 				507338A429E0A04700BE65F9 /* LepraNode.swift in Sources */,
 				50F973CF29D6E11400C4E5D6 /* LepraLoginView.swift in Sources */,
 				5079847729E46B3900FE22C7 /* View+Any.swift in Sources */,
+				506C4EA629F5645300B39A93 /* LepraTabView.swift in Sources */,
 				5052D4D329F4177900D7B849 /* LepraLoginViewModel.swift in Sources */,
 				500B197F29E00AD000FE61C8 /* LepraDomainSectionView.swift in Sources */,
 				5052D4CD29F40B9700D7B849 /* LepraCache.swift in Sources */,
 				500FE32229D8919700CC78CE /* LepraFormatter.swift in Sources */,
-				500FE31429D841B500CC78CE /* LepraDomainView.swift in Sources */,
+				500FE31429D841B500CC78CE /* LepraDomainsView.swift in Sources */,
 				50547E1629E06CC000EC51A9 /* LepraComments.swift in Sources */,
 				5052D4CF29F4162E00D7B849 /* ProcessInfo+Preview.swift in Sources */,
 				5079847329E431A100FE22C7 /* LepraVideoView.swift in Sources */,

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraProfileView: View {
-    @StateObject private var viewModel: LepraProfileViewModel = .init()
+    @EnvironmentObject private var viewModel: LepraProfileViewModel
     @Binding private var shouldReload: Bool
 
     var body: some View {

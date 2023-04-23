@@ -8,8 +8,9 @@
 import Foundation
 
 final class LepraProfileViewModel: ObservableObject, @unchecked Sendable {
+    @Published private(set) var leper: LepraUser?
+
     private let api: LepraAPI = .shared
-    @Published var leper: LepraUser?
 
     init() {
         if ProcessInfo.isRunningForPreviews {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LepraCommentsView: View {
-    @StateObject private var viewModel: LepraCommentViewModel = .init()
+    @StateObject private var viewModel: LepraCommentsViewModel = .init()
     @Binding var post: LepraPost
     @State private var sortByDate: Bool = true
     @State private var showUnreadOnly: Bool = true
@@ -101,7 +101,8 @@ struct LepraCommentsView: View {
         }
     }
 
-    @MainActor func fetch() async {
+    @MainActor
+    private func fetch() async {
         do {
             try await viewModel.fetch(for: post)
         } catch {
@@ -113,7 +114,9 @@ struct LepraCommentsView: View {
 struct LepraCommentsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            LepraCommentsView(post: .constant(.init()))
+            LepraCommentsView(
+                post: .constant(.init())
+            )
         }
     }
 }

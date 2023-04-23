@@ -9,10 +9,12 @@ import Algorithms
 import Foundation
 
 final class LepraFeedViewModel: ObservableObject, @unchecked Sendable {
-    private let api: LepraAPI = .shared
-    private var page: UInt = 1
-    private let perPage: Int = 42
     @Published var posts: [LepraPost] = []
+
+    private let api: LepraAPI = .shared
+
+    private var page: UInt = 1
+    private let perPage: Int = 13
 
     init() {
         if ProcessInfo.isRunningForPreviews {

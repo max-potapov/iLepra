@@ -8,40 +8,30 @@
 import SwiftUI
 
 struct LepraContentView: View {
-    @State private var selection: Tab = .feed
-    @State private var sidebarSelection: Tab? = .feed
-    #if os(iOS)
-        @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
+    @StateObject private var feedViewModel: LepraFeedViewModel = .init()
+    @StateObject private var domainsViewModel: LepraDomainsViewModel = .init()
+    @StateObject private var profileViewModel: LepraProfileViewModel = .init()
 
-    private var useSideBar: Bool {
-        #if os(iOS)
-            return horizontalSizeClass != .compact
-        #else
-            return true
-        #endif
-    }
+    @State private var selection: LepraTab = .default
 
-    @State private var shouldReloadMain: Bool = false
+    @State private var navigationPathFeed: NavigationPath = .init()
+    @State private var navigationPathDomains: NavigationPath = .init()
+
+    @State private var shouldReloadFeed: Bool = false
     @State private var shouldReloadDomains: Bool = false
     @State private var shouldReloadProfile: Bool = false
 
     var body: some View {
-        Group {
-            if useSideBar {
-                NavigationSplitView {
-                    sidebarView
-                } detail: {
-                    tabView(selection)
-                }
-            } else {
-                tabBarView
-            }
-        }
+        LepraTabView(
+            feedView: view(for: .feed),
+            domainsView: view(for: .domains),
+            profileView: view(for: .profile),
+            selection: $selection
+        )
         .onTapGesture(count: 2) {
             switch selection {
             case .feed:
-                shouldReloadMain = true
+                shouldReloadFeed = true
             case .domains:
                 shouldReloadDomains = true
             case .profile:
@@ -50,78 +40,23 @@ struct LepraContentView: View {
         }
     }
 
-    private var sidebarView: some View {
-        List(selection: $sidebarSelection) {
-            ForEach(Tab.allCases, id: \.self) { tab in
-                Label(tab.title, systemImage: tab.imageName)
-            }
-        }
-        .onChange(of: sidebarSelection) { tab in
-            selection = tab ?? .feed
-        }
-        .navigationTitle("iLepra")
-        #if os(macOS)
-            .navigationSplitViewColumnWidth(min: 200, ideal: 200)
-        #endif
-    }
-
-    private var tabBarView: some View {
-        TabView(selection: $selection) {
-            ForEach(Tab.allCases, id: \.self) { tab in
-                tabView(tab).tag(tab).tabItem {
-                    Label(tab.title, systemImage: tab.imageName)
-                }
-            }
-        }
-        .onChange(of: selection) { tab in
-            sidebarSelection = tab
-        }
-    }
-
-    private func tabView(_ tab: Tab) -> some View {
+    private func view(for tab: LepraTab) -> some View {
         switch tab {
         case .feed:
-            return LepraFeedView(shouldReload: $shouldReloadMain)
+            return LepraFeedView(navigationPath: $navigationPathFeed, shouldReload: $shouldReloadFeed)
+                .environmentObject(feedViewModel)
                 .navigationTitle(tab.title)
                 .eraseToAny()
         case .domains:
-            return LepraDomainView(shouldReload: $shouldReloadDomains)
+            return LepraDomainsView(navigationPath: $navigationPathDomains, shouldReload: $shouldReloadDomains)
+                .environmentObject(domainsViewModel)
                 .navigationTitle(tab.title)
                 .eraseToAny()
         case .profile:
             return LepraProfileView(shouldReload: $shouldReloadProfile)
+                .environmentObject(profileViewModel)
                 .navigationTitle(tab.title)
                 .eraseToAny()
-        }
-    }
-}
-
-extension LepraContentView {
-    private enum Tab: Hashable, CaseIterable {
-        case feed
-        case domains
-        case profile
-
-        var title: String {
-            switch self {
-            case .feed:
-                return "Главная"
-            case .domains:
-                return "Подлепры"
-            case .profile:
-                return "Профиль"
-            }
-        }
-
-        var imageName: String {
-            switch self {
-            case .feed:
-                return "house"
-            case .domains:
-                return "list.dash"
-            case .profile:
-                return "brain.head.profile"
-            }
         }
     }
 }

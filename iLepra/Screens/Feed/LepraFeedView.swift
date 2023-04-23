@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct LepraFeedView: View {
-    @StateObject private var viewModel: LepraFeedViewModel = .init()
+    @EnvironmentObject private var viewModel: LepraFeedViewModel
+    @Binding private var navigationPath: NavigationPath
     @Binding private var shouldReload: Bool
     @State private var isLoading = false
-    @State private var navigationPath: NavigationPath = .init()
 
     var body: some View {
         Group {
@@ -40,7 +40,11 @@ struct LepraFeedView: View {
         }
     }
 
-    init(shouldReload: Binding<Bool>) {
+    init(
+        navigationPath: Binding<NavigationPath>,
+        shouldReload: Binding<Bool>
+    ) {
+        _navigationPath = navigationPath
         _shouldReload = shouldReload
     }
 
@@ -64,6 +68,7 @@ struct LepraFeedView: View {
 struct LepraFeedView_Previews: PreviewProvider {
     static var previews: some View {
         LepraFeedView(
+            navigationPath: .constant(.init()),
             shouldReload: .constant(false)
         )
     }

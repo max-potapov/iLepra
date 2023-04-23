@@ -81,6 +81,8 @@ struct LepraCommentsView: View {
         }
         .sheet(isPresented: $isChartPresented) {
             LepraChartView(comments: .constant(viewModel.comments))
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.large])
         }
         .alert(isPresented: $showAlert) {
             Alert(

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LepraDomainView: View {
-    @EnvironmentObject var viewModel: LepraViewModel
+    @StateObject private var viewModel: LepraDomainViewModel = .init()
+    @Binding private var shouldReload: Bool
     @State private var isLoading: Bool = false
     @State private var isLoadingPosts: Bool = false
     @State private var navigationPath: NavigationPath = .init()
@@ -31,7 +32,7 @@ struct LepraDomainView: View {
                         LepraPostsView(
                             isLoading: $isLoadingPosts,
                             navigationPath: $navigationPath,
-                            posts: $viewModel.domainPosts,
+                            posts: $viewModel.posts,
                             onLastSectionAppear: {
                                 fetchPosts()
                             }
@@ -44,40 +45,54 @@ struct LepraDomainView: View {
                 }
             }
         }
+        .onChange(of: shouldReload) { reload in
+            if reload {
+                navigationPath = .init()
+                viewModel.reset()
+            }
+        }
     }
 
-    func fetch() {
+    init(shouldReload: Binding<Bool>) {
+        _shouldReload = shouldReload
+    }
+
+    private func fetch() {
+        Task {
+            await fetch()
+        }
+    }
+
+    @MainActor
+    private func fetch() async {
         guard !isLoading else { return }
 
-        defer {
-            isLoading = false
-        }
-
         isLoading = true
+        try? await viewModel.fetch()
+        isLoading = false
+        shouldReload = false
+    }
 
+    private func fetchPosts() {
         Task {
-            try await viewModel.fetchDomains()
+            await fetchPosts()
         }
     }
 
-    func fetchPosts() {
+    @MainActor
+    private func fetchPosts() async {
         guard !isLoadingPosts else { return }
 
-        defer {
-            isLoadingPosts = false
-        }
-
         isLoadingPosts = true
-
-        Task {
-            try await viewModel.fetchPosts()
-        }
+        try? await viewModel.fetchPosts()
+        isLoadingPosts = false
     }
 }
 
 struct LepraDomainView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraDomainView()
-            .environmentObject(LepraViewModel())
+        LepraDomainView(
+            shouldReload: .constant(false)
+        )
     }
 }

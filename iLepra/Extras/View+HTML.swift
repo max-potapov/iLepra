@@ -128,6 +128,9 @@ extension Element {
                 return Text(text)
                     .underline()
                     .eraseToAny()
+            case "video":
+                return try LepraImageView(url: .init(string: attr("data-orig"))!)
+                    .eraseToAny()
             default:
                 throw HTMLError()
             }

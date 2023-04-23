@@ -40,6 +40,7 @@ struct LepraImageView: View {
         AnimatedImage(url: url)
             .resizable()
             .scaledToFit()
+            .frame(height: 400)
             .onTapGesture {
                 isPresented.toggle()
             }

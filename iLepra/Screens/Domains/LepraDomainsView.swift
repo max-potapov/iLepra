@@ -1,5 +1,5 @@
 //
-//  LepraDomainView.swift
+//  LepraDomainsView.swift
 //  iLepra
 //
 //  Created by Maxim Potapov on 01.04.2023.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct LepraDomainView: View {
-    @StateObject private var viewModel: LepraDomainViewModel = .init()
+struct LepraDomainsView: View {
+    @EnvironmentObject private var viewModel: LepraDomainsViewModel
+    @Binding private var navigationPath: NavigationPath
     @Binding private var shouldReload: Bool
     @State private var isLoading: Bool = false
     @State private var isLoadingPosts: Bool = false
-    @State private var navigationPath: NavigationPath = .init()
 
     var body: some View {
         Group {
@@ -53,7 +53,11 @@ struct LepraDomainView: View {
         }
     }
 
-    init(shouldReload: Binding<Bool>) {
+    init(
+        navigationPath: Binding<NavigationPath>,
+        shouldReload: Binding<Bool>
+    ) {
+        _navigationPath = navigationPath
         _shouldReload = shouldReload
     }
 
@@ -91,7 +95,8 @@ struct LepraDomainView: View {
 
 struct LepraDomainView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraDomainView(
+        LepraDomainsView(
+            navigationPath: .constant(.init()),
             shouldReload: .constant(false)
         )
     }

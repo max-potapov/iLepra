@@ -1,5 +1,5 @@
 //
-//  LepraDomainViewModel.swift
+//  LepraDomainsViewModel.swift
 //  iLepra
 //
 //  Created by Maxim Potapov on 22.04.2023.
@@ -8,15 +8,14 @@
 import Algorithms
 import Foundation
 
-final class LepraDomainViewModel: ObservableObject, @unchecked Sendable {
-    private let api: LepraAPI = .shared
-
+final class LepraDomainsViewModel: ObservableObject, @unchecked Sendable {
     @Published var domains: [LepraDomain] = []
+    @Published var posts: [LepraPost] = []
 
+    private let api: LepraAPI = .shared
     private var currentDomain: LepraDomain?
     private var page: UInt = 1
-    private let perPage = 33
-    @Published var posts: [LepraPost] = []
+    private let perPage: Int = 13
 
     init() {
         if ProcessInfo.isRunningForPreviews {

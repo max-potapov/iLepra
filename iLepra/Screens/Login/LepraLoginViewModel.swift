@@ -8,12 +8,12 @@
 import SwiftUI
 
 final class LepraLoginViewModel: ObservableObject, @unchecked Sendable {
-    private let api: LepraAPI = .shared
+    @Published private(set) var isAuthorized: Bool = false
 
     @AppStorage("username") private var username: String?
     @AppStorage("password") private var password: String?
 
-    @Published private(set) var isAuthorized: Bool = false
+    private let api: LepraAPI = .shared
 
     init() {
         guard !ProcessInfo.isRunningForPreviews else { return }

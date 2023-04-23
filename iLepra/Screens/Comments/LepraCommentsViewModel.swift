@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class LepraCommentViewModel: ObservableObject, @unchecked Sendable {
-    private let api: LepraAPI = .shared
+final class LepraCommentsViewModel: ObservableObject, @unchecked Sendable {
+    @Published private(set) var comments: [LepraComment] = []
 
-    @Published var comments: [LepraComment] = []
+    private let api: LepraAPI = .shared
 
     init() {
         if ProcessInfo.isRunningForPreviews {

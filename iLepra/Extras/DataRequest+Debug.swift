@@ -6,15 +6,19 @@
 //
 
 import Alamofire
+import OSLog
 
 extension DataRequest {
-    func debugPrint() -> Self {
-        responseData { response in
+    func debugPrint(with logger: Logger) -> Self {
+        responseString(encoding: .utf8) { response in
+            let path = response.request?.url?.path() ?? "n/a"
             switch response.result {
-            case let .success(data):
-                Swift.debugPrint(String(data: data, encoding: .utf8) ?? "n/a")
+            case let .success(string):
+                let output = NSMutableString(string: .init(string.prefix(5000)))
+                CFStringTransform(output, nil, "Any-Hex/Java" as NSString, true)
+                logger.log(level: .debug, "🛬 \(path)\n\(output)")
             case let .failure(error):
-                Swift.debugPrint(String(describing: error))
+                logger.log(level: .debug, "💩 \(path)\n\(error)")
             }
         }
     }

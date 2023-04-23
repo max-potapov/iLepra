@@ -7,11 +7,13 @@
 
 import Alamofire
 import Foundation
+import OSLog
 
 actor LepraAPI {
     static let shared: LepraAPI = .init()
 
     private let baseURL: URL = .init(string: "https://leprosorium.ru")!
+
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -19,12 +21,19 @@ actor LepraAPI {
         return decoder
     }()
 
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: String(describing: LepraAPI.self)
+    )
+
     private var auth: LepraAuth?
 
     private init() {}
 
     func login(username: String, password: String) async throws {
         guard !username.isEmpty, !password.isEmpty else { throw Error.youShallNotPass }
+
+        logger.log(level: .debug, "🚀 api/auth/login")
 
         auth = try await AF.request(
             baseURL.appending(path: "api/auth/login"),
@@ -50,6 +59,8 @@ actor LepraAPI {
         parameters: [String: Any] = [:]
     ) async throws -> T where T: Decodable {
         guard let auth else { throw Error.youShallNotPass }
+
+        logger.log(level: .debug, "🚀 \(path)")
 
         return try await AF.request(
             baseURL.appending(path: path),

@@ -9,11 +9,17 @@ import SwiftUI
 
 struct LepraCommentsView: View {
     @StateObject private var viewModel: LepraCommentsViewModel = .init()
+    @StateObject private var votesDetailsViewModel: LepraVotesDetailsViewModel = .init()
+
     @Binding var post: LepraPost
     @State private var sortByDate: Bool = true
     @State private var showUnreadOnly: Bool = true
     @State private var isChartPresented = false
     @State private var showAlert = false
+
+    @State private var selectedCommentID: Int = -1
+    @State private var isVotesPresented: Bool = false
+    @State private var isVotesLoading: Bool = false
 
     @State private var error: Error? {
         didSet {
@@ -44,13 +50,37 @@ struct LepraCommentsView: View {
                         Spacer()
                             .frame(height: 8)
                         HStack(alignment: .center) {
-                            LepraVotesView(isReversed: true, rating: comment.rating, userVote: comment.userVote)
+                            LepraVotesView(
+                                isReversed: true,
+                                id: comment.id,
+                                rating: comment.rating,
+                                userVote: comment.userVote ?? 0,
+                                voteWeight: post.voteWeight
+                            ) { id, vote in
+                                setVote(vote, for: id)
+                            } showAction: { id in
+                                showVotes(for: id)
+                            }
                             Text("\(comment.user.wroteOnceText(when: comment.created))")
                                 .font(.footnote)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                     .badge(comment.unread ? "!" : "")
+                }
+            }
+        }
+        .sheet(isPresented: $isVotesPresented) {
+            LepraSheetView(.medium) {
+                if let votes = votesDetailsViewModel.votes {
+                    LepraVotesDetailsView(votes: .constant(votes)) {
+                        fetchVotes(for: selectedCommentID)
+                    }
+                } else {
+                    LepraTextLoadingIndicatorView()
+                        .onAppear {
+                            fetchVotes(for: selectedCommentID)
+                        }
                 }
             }
         }
@@ -80,9 +110,9 @@ struct LepraCommentsView: View {
             }
         }
         .sheet(isPresented: $isChartPresented) {
-            LepraChartView(comments: .constant(viewModel.comments))
-                .presentationDragIndicator(.visible)
-                .presentationDetents([.large])
+            LepraSheetView {
+                LepraChartView(comments: .constant(viewModel.comments))
+            }
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -108,6 +138,36 @@ struct LepraCommentsView: View {
         } catch {
             self.error = error
         }
+    }
+
+    private func setVote(_ vote: Int, for commentID: LepraComment.ID) {
+        Task {
+            await setVote(vote, for: commentID)
+        }
+    }
+
+    @MainActor
+    private func setVote(_ vote: Int, for commentID: LepraComment.ID) async {
+        try? await votesDetailsViewModel.vote(commentID: commentID, value: vote)
+    }
+
+    private func showVotes(for commentID: LepraComment.ID) {
+        selectedCommentID = commentID
+        votesDetailsViewModel.reset()
+        isVotesPresented.toggle()
+    }
+
+    private func fetchVotes(for commentID: LepraComment.ID) {
+        Task {
+            await fetchVotes(for: commentID)
+        }
+    }
+
+    @MainActor
+    private func fetchVotes(for commentID: LepraComment.ID) async {
+        isVotesLoading = true
+        try? await votesDetailsViewModel.fetchVotes(commentID: commentID)
+        isVotesLoading = false
     }
 }
 

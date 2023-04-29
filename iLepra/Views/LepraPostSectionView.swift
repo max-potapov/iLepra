@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct LepraPostSectionView: View {
+    @StateObject private var viewModel: LepraVotesDetailsViewModel = .init()
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Binding var navigationPath: NavigationPath
     @Binding var post: LepraPost
+    @State private var isPresented: Bool = false
+    @State private var isLoading: Bool = false
 
     var useHorizontalLayout: Bool {
         dynamicTypeSize <= .accessibility2
@@ -55,11 +58,62 @@ struct LepraPostSectionView: View {
                         Spacer()
                     }
 
-                    LepraVotesView(rating: post.rating, userVote: post.userVote)
+                    LepraVotesView(
+                        id: post.id,
+                        rating: post.rating,
+                        userVote: post.userVote ?? 0,
+                        voteWeight: post.voteWeight
+                    ) { _, vote in
+                        setVote(vote)
+                    } showAction: { _ in
+                        showVotes()
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: useHorizontalLayout ? .leading : .center)
             }
+            .sheet(isPresented: $isPresented) {
+                LepraSheetView(.medium) {
+                    if let votes = viewModel.votes {
+                        LepraVotesDetailsView(votes: .constant(votes)) {
+                            fetch()
+                        }
+                    } else {
+                        LepraTextLoadingIndicatorView()
+                            .onAppear {
+                                fetch()
+                            }
+                    }
+                }
+            }
         }
+    }
+
+    private func setVote(_ vote: Int) {
+        Task {
+            await setVote(vote)
+        }
+    }
+
+    @MainActor
+    private func setVote(_ vote: Int) async {
+        try? await viewModel.vote(postID: post.id, value: vote)
+    }
+
+    private func showVotes() {
+        isPresented.toggle()
+    }
+
+    private func fetch() {
+        Task {
+            await fetch()
+        }
+    }
+
+    @MainActor
+    private func fetch() async {
+        isLoading = true
+        try? await viewModel.fetchVotes(postID: post.id)
+        isLoading = false
     }
 }
 

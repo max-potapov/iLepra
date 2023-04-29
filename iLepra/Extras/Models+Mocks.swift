@@ -69,3 +69,36 @@ extension LepraComment {
         userVote = .random(in: 0 ..< 100)
     }
 }
+
+extension AjaxUser {
+    init() {
+        active = .random(in: 0 ... 1)
+        deleted = .random(in: 0 ... 1)
+        gender = Bool.random() ? .male : .female
+        id = .random(in: 0 ... 99)
+        ignored = .random(in: 0 ... 1)
+        karma = .random(in: 0 ... 99)
+        login = ["kek", "lol"].randomElement() ?? "-"
+        rank = ["kek", "lol"].randomElement()
+    }
+}
+
+extension AjaxVote {
+    init() {
+        user = .init()
+        vote = .random(in: 0 ... 9)
+    }
+}
+
+extension AjaxVotes {
+    init() {
+        cons = (0 ... 9).map { _ in .init() }
+        consCount = cons.count
+        offset = 0
+        pros = (0 ... 19).map { _ in .init() }
+        prosCount = pros.count
+        rating = .random(in: 0 ... 99)
+        status = "да"
+        totalCount = prosCount + consCount
+    }
+}

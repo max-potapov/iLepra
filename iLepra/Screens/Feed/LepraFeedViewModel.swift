@@ -8,7 +8,7 @@
 import Algorithms
 import Foundation
 
-final class LepraFeedViewModel: ObservableObject, @unchecked Sendable {
+final class LepraFeedViewModel: ObservableObject {
     @Published var posts: [LepraPost] = []
 
     private let api: LepraAPI = .shared

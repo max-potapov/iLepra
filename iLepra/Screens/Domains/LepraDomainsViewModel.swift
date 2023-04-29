@@ -8,7 +8,7 @@
 import Algorithms
 import Foundation
 
-final class LepraDomainsViewModel: ObservableObject, @unchecked Sendable {
+final class LepraDomainsViewModel: ObservableObject {
     @Published var domains: [LepraDomain] = []
     @Published var posts: [LepraPost] = []
 

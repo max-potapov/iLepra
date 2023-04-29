@@ -11,6 +11,7 @@ enum LepraTab: Hashable, CaseIterable {
     static let `default` = LepraTab.feed
 
     case feed
+    case moar
     case domains
     case profile
 
@@ -18,6 +19,8 @@ enum LepraTab: Hashable, CaseIterable {
         switch self {
         case .feed:
             return "Главная"
+        case .moar:
+            return "Мои вещи"
         case .domains:
             return "Подлепры"
         case .profile:
@@ -29,6 +32,8 @@ enum LepraTab: Hashable, CaseIterable {
         switch self {
         case .feed:
             return "house"
+        case .moar:
+            return "bookmark"
         case .domains:
             return "list.dash"
         case .profile:
@@ -39,6 +44,7 @@ enum LepraTab: Hashable, CaseIterable {
 
 struct LepraTabView<LepraView: View>: View {
     let feedView: LepraView
+    let moarView: LepraView
     let domainsView: LepraView
     let profileView: LepraView
 
@@ -102,6 +108,8 @@ struct LepraTabView<LepraView: View>: View {
         switch tab {
         case .feed:
             return feedView
+        case .moar:
+            return moarView
         case .domains:
             return domainsView
         case .profile:
@@ -114,6 +122,7 @@ struct LepraTabView_Previews: PreviewProvider {
     static var previews: some View {
         LepraTabView(
             feedView: EmptyView(),
+            moarView: EmptyView(),
             domainsView: EmptyView(),
             profileView: EmptyView(),
             selection: .constant(.default)

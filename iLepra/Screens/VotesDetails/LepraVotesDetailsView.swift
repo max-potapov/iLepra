@@ -31,8 +31,8 @@ struct LepraVotesDetailsView: View {
                 ForEach(0 ..< count, id: \.self) { index in
                     HStack {
                         Group {
-                            if let pro = votes.pros[safe: index] {
-                                Text("\(pro.user.login)[\(pro.user.karma)] \(pro.vote > 0 ? "+" : "")\(pro.vote)")
+                            if let pro = votes.pros[safe: index], let user = pro.user {
+                                Text("\(user.login)[\(user.karma)] \(pro.vote > 0 ? "+" : "")\(pro.vote)")
                             } else {
                                 Spacer()
                                     .frame(maxWidth: .infinity)
@@ -41,8 +41,8 @@ struct LepraVotesDetailsView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         Divider()
                         Group {
-                            if let con = votes.cons[safe: index] {
-                                Text("\(con.user.login)[\(con.user.karma)] \(con.vote > 0 ? "+" : "")\(con.vote)")
+                            if let con = votes.cons[safe: index], let user = con.user {
+                                Text("\(user.login)[\(user.karma)] \(con.vote > 0 ? "+" : "")\(con.vote)")
                             } else {
                                 Spacer()
                                     .frame(maxWidth: .infinity)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class LepraLoginViewModel: ObservableObject, @unchecked Sendable {
+final class LepraLoginViewModel: ObservableObject {
     @Published private(set) var isAuthorized: Bool = false
 
     @AppStorage("username") private var username: String?

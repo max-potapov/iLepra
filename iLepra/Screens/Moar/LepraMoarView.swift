@@ -1,16 +1,16 @@
 //
-//  LepraFeedView.swift
+//  LepraMoarView.swift
 //  iLepra
 //
-//  Created by Maxim Potapov on 01.04.2023.
+//  Created by Maxim Potapov on 29.04.2023.
 //
 
 import SwiftUI
 
-struct LepraFeedView: View {
-    @EnvironmentObject private var viewModel: LepraFeedViewModel
-    @Binding private var navigationPath: NavigationPath
-    @Binding private var shouldReload: Bool
+struct LepraMoarView: View {
+    @EnvironmentObject private var viewModel: LepraMoarViewModel
+    @Binding var navigationPath: NavigationPath
+    @Binding var shouldReload: Bool
     @State private var isLoading = false
 
     var body: some View {
@@ -40,14 +40,6 @@ struct LepraFeedView: View {
         }
     }
 
-    init(
-        navigationPath: Binding<NavigationPath>,
-        shouldReload: Binding<Bool>
-    ) {
-        _navigationPath = navigationPath
-        _shouldReload = shouldReload
-    }
-
     private func fetch() {
         Task {
             await fetch()
@@ -65,12 +57,12 @@ struct LepraFeedView: View {
     }
 }
 
-struct LepraFeedView_Previews: PreviewProvider {
+struct LepraMoarView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraFeedView(
+        LepraMoarView(
             navigationPath: .constant(.init()),
             shouldReload: .constant(false)
         )
-        .environmentObject(LepraFeedViewModel())
+        .environmentObject(LepraMoarViewModel())
     }
 }

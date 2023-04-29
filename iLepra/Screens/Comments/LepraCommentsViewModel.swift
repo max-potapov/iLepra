@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class LepraCommentsViewModel: ObservableObject, @unchecked Sendable {
+final class LepraCommentsViewModel: ObservableObject {
     @Published private(set) var comments: [LepraComment] = []
 
     private let api: LepraAPI = .shared
@@ -18,8 +18,15 @@ final class LepraCommentsViewModel: ObservableObject, @unchecked Sendable {
         }
     }
 
-    func fetch(for post: LepraPost) async throws {
+    func fetch(for post: LepraPost, markAsRead: Bool = true) async throws {
         let result: LepraComments = try await api.request(path: "api/posts/\(post.id)/comments")
+
+        if markAsRead {
+            _ = try await api.request(
+                path: "api/posts/\(post.id)/view",
+                method: .post
+            ) as LepraReadReceipt
+        }
 
         await MainActor.run {
             comments = result.comments

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class LepraProfileViewModel: ObservableObject, @unchecked Sendable {
+final class LepraProfileViewModel: ObservableObject {
     @Published private(set) var leper: LepraUser?
 
     private let api: LepraAPI = .shared

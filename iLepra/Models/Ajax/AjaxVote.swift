@@ -9,6 +9,6 @@ import Foundation
 
 // swiftformat:sort
 struct AjaxVote: Codable, Hashable {
-    let user: AjaxUser
+    let user: AjaxUser?
     let vote: Int
 }

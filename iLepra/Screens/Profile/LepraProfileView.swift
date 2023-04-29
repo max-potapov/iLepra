@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LepraProfileView: View {
     @EnvironmentObject private var viewModel: LepraProfileViewModel
+    @StateObject private var votesDetailsViewModel: LepraVotesDetailsViewModel = .init()
     @Binding private var shouldReload: Bool
+    @State private var isPresented: Bool = false
 
     var body: some View {
         Group {
@@ -21,7 +23,29 @@ struct LepraProfileView: View {
                         .font(.headline)
                     Text(leper.kind)
                         .font(.subheadline)
+                    if let karma = votesDetailsViewModel.votes?.karma {
+                        Button("\(karma > 0 ? "+" : "")\(karma)") {
+                            isPresented.toggle()
+                        }
+                        .font(.headline)
+                        .disabled(isPresented)
+                    }
                 }
+                .sheet(isPresented: $isPresented) {
+                    LepraSheetView(.medium) {
+                        if let votes = votesDetailsViewModel.votes {
+                            LepraVotesDetailsView(votes: .constant(votes)) {
+                                fetchVotes()
+                            }
+                        } else {
+                            LepraTextLoadingIndicatorView()
+                                .onAppear {
+                                    fetchVotes()
+                                }
+                        }
+                    }
+                }
+
             } else {
                 LepraEmptyContentPlaceholderView {
                     fetch()
@@ -31,6 +55,7 @@ struct LepraProfileView: View {
         .onChange(of: shouldReload) { reload in
             if reload {
                 viewModel.reset()
+                votesDetailsViewModel.reset()
             }
         }
     }
@@ -42,6 +67,7 @@ struct LepraProfileView: View {
     private func fetch() {
         Task {
             await fetch()
+            await fetchVotes()
         }
     }
 
@@ -49,6 +75,18 @@ struct LepraProfileView: View {
     private func fetch() async {
         try? await viewModel.fetch()
         shouldReload = false
+    }
+
+    private func fetchVotes() {
+        Task {
+            await fetchVotes()
+        }
+    }
+
+    @MainActor
+    private func fetchVotes() async {
+        guard let id = viewModel.leper?.id else { return }
+        try? await votesDetailsViewModel.fetchVotes(userID: id)
     }
 }
 

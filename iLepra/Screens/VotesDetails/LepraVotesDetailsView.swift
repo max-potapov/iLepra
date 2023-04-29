@@ -17,8 +17,14 @@ struct LepraVotesDetailsView: View {
         } else {
             List {
                 VStack {
-                    Text("Рейтинг: \(votes.rating)")
-                        .font(.title2)
+                    if let rating = votes.rating {
+                        Text("Рейтинг: \(rating)")
+                            .font(.title2)
+                    }
+                    if let karma = votes.karma {
+                        Text("Карма: \(karma > 0 ? "+" : "")\(karma)")
+                            .font(.title2)
+                    }
                     HStack {
                         Text("плюсов – \(votes.prosCount)")
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

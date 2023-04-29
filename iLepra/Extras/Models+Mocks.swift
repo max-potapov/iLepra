@@ -94,6 +94,7 @@ extension AjaxVotes {
     init() {
         cons = (0 ... 9).map { _ in .init() }
         consCount = cons.count
+        karma = -1
         offset = 0
         pros = (0 ... 19).map { _ in .init() }
         prosCount = pros.count

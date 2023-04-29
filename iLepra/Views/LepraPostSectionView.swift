@@ -13,7 +13,6 @@ struct LepraPostSectionView: View {
     @Binding var navigationPath: NavigationPath
     @Binding var post: LepraPost
     @State private var isPresented: Bool = false
-    @State private var isLoading: Bool = false
 
     var useHorizontalLayout: Bool {
         dynamicTypeSize <= .accessibility2
@@ -111,9 +110,7 @@ struct LepraPostSectionView: View {
 
     @MainActor
     private func fetch() async {
-        isLoading = true
         try? await viewModel.fetchVotes(postID: post.id)
-        isLoading = false
     }
 }
 

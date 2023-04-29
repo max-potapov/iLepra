@@ -50,13 +50,17 @@ final class LepraVotesDetailsViewModel: ObservableObject {
         try await fetchVotes(type: "comment", id: commentID)
     }
 
+    func fetchVotes(userID: LepraUser.ID) async throws {
+        try await fetchVotes(type: "user", id: userID)
+    }
+
     private func fetchVotes(type: String, id: LepraPost.ID) async throws {
         if votes != nil, votes?.offset == nil {
             return
         }
 
         let response: AjaxVotes = try await api.request(
-            path: "ajax/vote/list",
+            path: type == "user" ? "ajax/user/karma/list" : "ajax/vote/list",
             method: .post,
             parameters: [
                 type: id,
@@ -70,6 +74,7 @@ final class LepraVotesDetailsViewModel: ObservableObject {
             result = .init(
                 cons: .init((votes.cons + response.cons).uniqued()),
                 consCount: response.consCount,
+                karma: response.karma,
                 offset: response.offset,
                 pros: .init((votes.pros + response.pros).uniqued()),
                 prosCount: response.prosCount,

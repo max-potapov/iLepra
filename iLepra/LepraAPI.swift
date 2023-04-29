@@ -27,6 +27,7 @@ actor LepraAPI {
     )
 
     private var auth: LepraAuth?
+    private var ajaxAuth: AjaxAuth?
 
     private init() {}
 
@@ -47,6 +48,21 @@ actor LepraAPI {
         .validate()
         .serializingDecodable(LepraAuth.self)
         .value
+
+        ajaxAuth = try await AF.request(
+            baseURL.appending(path: "ajax/auth/login"),
+            method: .post,
+            parameters: [
+                "username": username,
+                "password": password,
+            ]
+        )
+        .validate()
+        .serializingDecodable(
+            AjaxAuth.self,
+            decoder: decoder
+        )
+        .value
     }
 
     func logout() {
@@ -58,9 +74,14 @@ actor LepraAPI {
         method: HTTPMethod = .get,
         parameters: [String: Any] = [:]
     ) async throws -> T where T: Decodable {
-        guard let auth else { throw Error.youShallNotPass }
+        guard let auth, let ajaxAuth else { throw Error.youShallNotPass }
 
-        logger.log(level: .debug, "🚀 \(path)")
+        logger.log(level: .debug, "🚀 \(method.rawValue): \(path)")
+
+        var parameters = parameters
+        if path.hasPrefix("ajax") {
+            parameters["csrf_token"] = ajaxAuth.csrfToken
+        }
 
         return try await AF.request(
             baseURL.appending(path: path),

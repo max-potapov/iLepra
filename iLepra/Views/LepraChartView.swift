@@ -9,7 +9,6 @@ import Charts
 import SwiftUI
 
 struct LepraChartView: View {
-    @Environment(\.dismiss) private var dismiss
     @Binding var comments: [LepraComment]
 
     private let limit: Int = 10
@@ -20,44 +19,30 @@ struct LepraChartView: View {
     private let topNegative: [BarData]
 
     var body: some View {
-        VStack {
-            List {
-                let tops = [topCount, topPositive, topNegative]
-                ForEach(tops.indices, id: \.self) { index in
-                    Section {
-                        switch index {
-                        case 0:
-                            Text("По количеству")
-                        case 1:
-                            Text("Верх рейтинга [sum(rating)/count]")
-                        case 2:
-                            Text("Низ рейтинга [sum(rating)/count]")
-                        default:
-                            EmptyView()
-                        }
-                        Chart(tops[index]) { bar in
-                            BarMark(
-                                x: .value("x", bar.label),
-                                y: .value("y", bar.value)
-                            )
-                            .foregroundStyle(by: .value("color", bar.value))
-                        }
+        List {
+            let tops = [topCount, topPositive, topNegative]
+            ForEach(tops.indices, id: \.self) { index in
+                Section {
+                    switch index {
+                    case 0:
+                        Text("По количеству")
+                    case 1:
+                        Text("Верх рейтинга [sum(rating)/count]")
+                    case 2:
+                        Text("Низ рейтинга [sum(rating)/count]")
+                    default:
+                        EmptyView()
                     }
-                    .listRowSeparator(.hidden)
+                    Chart(tops[index]) { bar in
+                        BarMark(
+                            x: .value("x", bar.label),
+                            y: .value("y", bar.value)
+                        )
+                        .foregroundStyle(by: .value("color", bar.value))
+                    }
                 }
+                .listRowSeparator(.hidden)
             }
-            .onTapGesture {
-                dismiss()
-            }
-            #if os(macOS)
-            .frame(minWidth: 500, minHeight: 500)
-            #endif
-            #if os(macOS)
-                Button("Закрыть") {
-                    dismiss()
-                }
-                .padding()
-            #endif
         }
     }
 

@@ -15,7 +15,9 @@ final class LepraDomainsViewModel: ObservableObject {
     private let api: LepraAPI = .shared
     private var currentDomain: LepraDomain?
     private var page: UInt = 1
-    private let perPage: Int = 13
+    private let perPage: UInt = 13
+    private var postsPage: UInt = 1
+    private let postsPerPage: UInt = 13
 
     init() {
         if ProcessInfo.isRunningForPreviews {
@@ -26,16 +28,25 @@ final class LepraDomainsViewModel: ObservableObject {
 
     func reset() {
         currentDomain = .none
-        domains = []
         page = 1
+        domains = []
+        postsPage = 1
         posts = []
     }
 
     func fetch() async throws {
-        let result: LepraDomains = try await api.request(path: "api/domains")
+        let result: LepraDomains = try await api.request(
+            path: "api/domains",
+            parameters: [
+                "page": page,
+                "per_page": perPage,
+            ]
+        )
 
+        let unique = Array((domains + result.domains).uniqued())
         await MainActor.run {
-            domains = result.domains
+            page += 1
+            domains = unique
         }
     }
 
@@ -43,7 +54,7 @@ final class LepraDomainsViewModel: ObservableObject {
         guard currentDomain != domain else { return }
 
         currentDomain = domain
-        page = 1
+        postsPage = 1
         posts = []
     }
 
@@ -53,15 +64,15 @@ final class LepraDomainsViewModel: ObservableObject {
         let result: LepraPosts = try await api.request(
             path: "api/domains/\(currentDomain.prefix)/posts",
             parameters: [
-                "page": page,
-                "per_page": perPage,
+                "page": postsPage,
+                "per_page": postsPerPage,
                 "threshold_rating": threshold.rawValue,
             ]
         )
 
         let unique = Array((posts + result.posts).uniqued())
         await MainActor.run {
-            page += 1
+            postsPage += 1
             posts = unique
         }
     }

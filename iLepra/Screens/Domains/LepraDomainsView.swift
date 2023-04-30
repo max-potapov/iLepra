@@ -25,6 +25,13 @@ struct LepraDomainsView: View {
                     List {
                         ForEach($viewModel.domains, id: \.self) { $domain in
                             LepraDomainSectionView(domain: $domain)
+                            #if os(iOS)
+                                .onAppear {
+                                    if domain == viewModel.domains.last {
+                                        fetch()
+                                    }
+                                }
+                            #endif
                         }
                         LepraLoadingSectionView(isLoading: $isLoading)
                     }

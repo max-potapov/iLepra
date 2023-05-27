@@ -22,7 +22,10 @@ struct LepraApp: App {
             }
         }
         #if os(macOS)
-        .defaultSize(width: 500, height: 500)
+            WindowGroup("Стата", for: [LepraComment].self) { $value in
+                LepraChartView(comments: .constant(value ?? []))
+            }
+            .defaultSize(width: 500, height: 500)
         #endif
     }
 }

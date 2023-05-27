@@ -11,7 +11,11 @@ import SwiftUI
 struct LepraChartView: View {
     @Binding var comments: [LepraComment]
 
-    private let limit: Int = 10
+    #if os(macOS)
+        private let limit: Int = 30
+    #else
+        private let limit: Int = 10
+    #endif
     private let grouped: [LepraUser: [LepraComment]]
     private let rated: [(key: LepraUser, value: [LepraComment])]
     private let topCount: [BarData]
@@ -40,6 +44,26 @@ struct LepraChartView: View {
                         )
                         .foregroundStyle(by: .value("color", bar.value))
                     }
+                    .chartXAxis {
+                        AxisMarks { value in
+                            if let label = value.as(String.self),
+                               let userName = label.components(separatedBy: "\n").first,
+                               let stats = label.components(separatedBy: "\n").last
+                            { // swiftlint:disable:this opening_brace
+                                AxisGridLine()
+                                AxisTick()
+                                AxisValueLabel {
+                                    VStack {
+                                        Text(userName)
+                                        Text(stats)
+                                    }
+                                    .font(.footnote)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.7)
+                                }
+                            }
+                        }
+                    }
                 }
                 .listRowSeparator(.hidden)
             }
@@ -52,19 +76,39 @@ struct LepraChartView: View {
         grouped = Dictionary(grouping: comments.wrappedValue, by: \.user)
         rated = grouped.sorted { $0.value.avgRating > $1.value.avgRating }
 
+        let barDataLabel = { (key: LepraUser, value: [LepraComment]) -> String in
+            key.login
+                .appending("\n")
+                .appending("\(value.count)/\(value.avgRating)")
+        }
+
+        let toBarDataCount = { (key: LepraUser, value: [LepraComment]) -> BarData in
+            .init(
+                label: barDataLabel(key, value),
+                value: value.count
+            )
+        }
+
+        let toBarDataRating = { (key: LepraUser, value: [LepraComment]) -> BarData in
+            .init(
+                label: barDataLabel(key, value),
+                value: value.avgRating
+            )
+        }
+
         topCount = grouped
             .sorted { $0.value.count > $1.value.count }
             .prefix(limit)
-            .map { .init(label: $0.key.login, value: $0.value.count) }
+            .map(toBarDataCount)
 
         topPositive = rated
             .prefix(limit)
-            .map { .init(label: $0.key.login, value: $0.value.avgRating) }
+            .map(toBarDataRating)
 
         topNegative = rated
             .suffix(limit)
             .reversed()
-            .map { .init(label: $0.key.login, value: $0.value.avgRating) }
+            .map(toBarDataRating)
     }
 }
 
@@ -78,6 +122,9 @@ extension LepraChartView {
 
 struct LepraChartView_Previews: PreviewProvider {
     static var previews: some View {
-        LepraChartView(comments: .constant([.init(id: 0)]))
+        LepraChartView(comments: .constant([
+            .init(id: 0),
+            .init(id: 1),
+        ]))
     }
 }

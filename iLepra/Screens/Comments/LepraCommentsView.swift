@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LepraCommentsView: View {
+    @Environment(\.openWindow) var openWindow
+
     @StateObject private var viewModel: LepraCommentsViewModel = .init()
     @StateObject private var votesDetailsViewModel: LepraVotesDetailsViewModel = .init()
 
@@ -109,11 +111,20 @@ struct LepraCommentsView: View {
                 }
             }
         }
+        #if os(iOS)
         .sheet(isPresented: $isChartPresented) {
             LepraSheetView {
                 LepraChartView(comments: .constant(viewModel.comments))
             }
         }
+        #elseif os(macOS)
+        .onChange(of: isChartPresented) { presented in
+            if presented {
+                openWindow(value: viewModel.comments)
+                isChartPresented.toggle()
+            }
+        }
+        #endif
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("( ‾́ ◡ ‾́ )"),

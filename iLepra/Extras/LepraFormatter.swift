@@ -18,5 +18,14 @@ final class LepraFormatter {
         return formatter
     }()
 
+    lazy var absoluteDateTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar.timeZone = .current
+        formatter.locale = .init(identifier: "ru")
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
     private init() {}
 }

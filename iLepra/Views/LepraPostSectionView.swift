@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LepraPostSectionView: View {
+    @AppStorage("useAbsoluteTime") private var useAbsoluteTime: Bool?
     @StateObject private var viewModel: LepraVotesDetailsViewModel = .init()
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Binding var navigationPath: NavigationPath
@@ -38,7 +39,7 @@ struct LepraPostSectionView: View {
 
                 Divider()
 
-                Text("\(post.user.wroteOnceText(when: post.created))")
+                Text(post.user.wroteOnceText(when: post.created, useAbsoluteTime: useAbsoluteTime ?? false))
                     .font(.footnote)
 
                 layout {

@@ -22,12 +22,14 @@ struct LepraUser: Codable, Identifiable, Hashable {
         return "\(prefix)чётни\(suffix)"
     }
 
-    func wroteOnceText(when: Date) -> AttributedString {
+    func wroteOnceText(when: Date, useAbsoluteTime: Bool) -> AttributedString {
         let text = [
             gender == .male ? "Написал" : "Написала",
             rank,
             deleted ? "~~`\(login)`~~" : "`\(login)`",
-            LepraFormatter.shared.relativeDateTimeFormatter.localizedString(for: when, relativeTo: .now),
+            useAbsoluteTime
+                ? LepraFormatter.shared.absoluteDateTimeFormatter.string(from: when)
+                : LepraFormatter.shared.relativeDateTimeFormatter.localizedString(for: when, relativeTo: .now),
         ]
         .compactMap { $0 }
         .joined(separator: " ")

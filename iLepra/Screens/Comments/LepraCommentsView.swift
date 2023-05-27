@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LepraCommentsView: View {
     @Environment(\.openWindow) var openWindow
+    @AppStorage("useAbsoluteTime") private var useAbsoluteTime: Bool?
 
     @StateObject private var viewModel: LepraCommentsViewModel = .init()
     @StateObject private var votesDetailsViewModel: LepraVotesDetailsViewModel = .init()
@@ -63,9 +64,14 @@ struct LepraCommentsView: View {
                             } showAction: { id in
                                 showVotes(for: id)
                             }
-                            Text("\(comment.user.wroteOnceText(when: comment.created))")
-                                .font(.footnote)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(
+                                comment.user.wroteOnceText(
+                                    when: comment.created,
+                                    useAbsoluteTime: useAbsoluteTime ?? false
+                                )
+                            )
+                            .font(.footnote)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                     .badge(comment.unread ? "▵" : "")

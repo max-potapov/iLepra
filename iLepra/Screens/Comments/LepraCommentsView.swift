@@ -66,7 +66,7 @@ struct LepraCommentsView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
-                    .badge(comment.unread ? "!" : "")
+                    .badge(comment.unread ? "▵" : "")
                 }
             }
         }
@@ -90,22 +90,22 @@ struct LepraCommentsView: View {
         .toolbar {
             ToolbarItemGroup {
                 Toggle(isOn: $sortByDate) {
-                    Text("🕓")
+                    Image(systemName: "calendar")
                 }
                 let sortByRating = Binding(
                     get: { !sortByDate },
                     set: { _ in sortByDate.toggle() }
                 )
                 Toggle(isOn: sortByRating) {
-                    Text("🏆")
+                    Image(systemName: "star")
                 }
             }
             ToolbarItemGroup {
                 Toggle(isOn: $showUnreadOnly) {
-                    Text(showUnreadOnly ? "📬" : "📭")
+                    Image(systemName: "envelope.badge")
                 }
                 Toggle(isOn: $isChartPresented) {
-                    Text("📊")
+                    Image(systemName: "chart.bar")
                 }
             }
         }

@@ -13,7 +13,7 @@ struct LepraImageView: View {
     @State private var isPresented = false
 
     var body: some View {
-        imageView
+        previewImageView
         #if os(iOS)
         .fullScreenCover(isPresented: $isPresented) {
             ZStack {
@@ -36,11 +36,15 @@ struct LepraImageView: View {
         #endif
     }
 
+    var previewImageView: some View {
+        imageView
+            .frame(height: 400)
+    }
+
     var imageView: some View {
         AnimatedImage(url: url)
             .resizable()
             .scaledToFit()
-            .frame(height: 400)
             .onTapGesture {
                 isPresented.toggle()
             }

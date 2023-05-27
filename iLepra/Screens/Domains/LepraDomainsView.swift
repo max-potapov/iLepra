@@ -49,6 +49,13 @@ struct LepraDomainsView: View {
                         }
                         .navigationTitle(domain.title)
                     }
+                    #if os(macOS)
+                    .navigationDestination(for: LepraPost.self) { post in
+                        LepraCommentsView(
+                            post: .constant(post)
+                        )
+                    }
+                    #endif
                 }
             }
         }

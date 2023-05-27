@@ -72,6 +72,7 @@ struct LepraCommentsView: View {
                                 } showAction: { id in
                                     showVotes(for: id)
                                 }
+
                                 Text(
                                     comment.user.wroteOnceText(
                                         when: comment.created,
@@ -82,6 +83,15 @@ struct LepraCommentsView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
 
                                 Spacer()
+
+                                Button {
+                                    // TODO: reply
+                                } label: {
+                                    Image(systemName: "arrowshape.turn.up.left")
+                                }
+                                #if os(macOS)
+                                .buttonStyle(.plain)
+                                #endif
                             }
                         }
                         .badge(comment.unread ? "▵" : "")

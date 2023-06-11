@@ -20,17 +20,15 @@ final class LepraLoginViewModel: ObservableObject {
 
         if let username, let password {
             Task {
-                do {
-                    try await login(username: username, password: password)
-                    await MainActor.run {
-                        isAuthorized = true
-                    }
-                } catch {}
+                try await login(username: username, password: password)
             }
         }
     }
 
     func login(username: String, password: String) async throws {
         try await api.login(username: username, password: password)
+        await MainActor.run {
+            isAuthorized = true
+        }
     }
 }

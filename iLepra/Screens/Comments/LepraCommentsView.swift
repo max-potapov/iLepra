@@ -18,6 +18,7 @@ struct LepraCommentsView: View {
     @State private var sortByDate: Bool = true
     @State private var showUnreadOnly: Bool = true
     @State private var isChartPresented = false
+    @State private var isTablePresented = false
     @State private var showAlert = false
 
     @State private var selectedCommentID: Int = -1
@@ -115,6 +116,9 @@ struct LepraCommentsView: View {
                 Toggle(isOn: $isChartPresented) {
                     Image(systemName: "chart.bar")
                 }
+                Toggle(isOn: $isTablePresented) {
+                    Image(systemName: "tablecells.fill")
+                }
             }
         }
         #if os(iOS)
@@ -123,11 +127,22 @@ struct LepraCommentsView: View {
                 LepraChartView(comments: .constant(viewModel.comments))
             }
         }
+        .sheet(isPresented: $isTablePresented) {
+            LepraSheetView {
+                LepraTableView(comments: .constant(viewModel.comments))
+            }
+        }
         #elseif os(macOS)
         .onChange(of: isChartPresented) { presented in
             if presented {
-                openWindow(value: viewModel.comments)
+                openWindow(id: LepraWindowID.chart.rawValue, value: viewModel.comments)
                 isChartPresented.toggle()
+            }
+        }
+        .onChange(of: isTablePresented) { presented in
+            if presented {
+                openWindow(id: LepraWindowID.table.rawValue, value: viewModel.comments)
+                isTablePresented.toggle()
             }
         }
         #endif

@@ -9,7 +9,7 @@ import Foundation
 import SDWebImageSwiftUI
 
 struct LepraCache {
-    init() {
+    init() { // swiftlint:disable:this unneeded_synthesized_initializer
         let cache = SDImageCache(namespace: "lepra")
         cache.config.maxMemoryCost = 100 * 1024 * 1024 // 100MB memory
         cache.config.maxDiskSize = 50 * 1024 * 1024 // 50MB disk

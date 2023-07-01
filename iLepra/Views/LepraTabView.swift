@@ -18,26 +18,26 @@ enum LepraTab: Hashable, CaseIterable {
     var title: String {
         switch self {
         case .feed:
-            return "Главная"
+            "Главная"
         case .moar:
-            return "Мои вещи"
+            "Мои вещи"
         case .domains:
-            return "Подлепры"
+            "Подлепры"
         case .profile:
-            return "Профиль"
+            "Профиль"
         }
     }
 
     var imageName: String {
         switch self {
         case .feed:
-            return "house"
+            "house"
         case .moar:
-            return "bookmark"
+            "bookmark"
         case .domains:
-            return "list.dash"
+            "list.dash"
         case .profile:
-            return "brain.head.profile"
+            "brain.head.profile"
         }
     }
 }
@@ -107,13 +107,13 @@ struct LepraTabView<LepraView: View>: View {
     private func view(for tab: LepraTab) -> some View {
         switch tab {
         case .feed:
-            return feedView
+            feedView
         case .moar:
-            return moarView
+            moarView
         case .domains:
-            return domainsView
+            domainsView
         case .profile:
-            return profileView
+            profileView
         }
     }
 }

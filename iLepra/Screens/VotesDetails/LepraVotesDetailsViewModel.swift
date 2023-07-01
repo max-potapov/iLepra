@@ -69,9 +69,8 @@ final class LepraVotesDetailsViewModel: ObservableObject {
             ]
         )
 
-        let result: AjaxVotes
-        if let votes {
-            result = .init(
+        let result: AjaxVotes = if let votes {
+            .init(
                 cons: .init((votes.cons + response.cons).uniqued()),
                 consCount: response.consCount,
                 karma: response.karma,
@@ -83,7 +82,7 @@ final class LepraVotesDetailsViewModel: ObservableObject {
                 totalCount: response.totalCount
             )
         } else {
-            result = response
+            response
         }
         await MainActor.run {
             votes = result

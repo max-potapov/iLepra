@@ -32,6 +32,7 @@
 		5014C5BA29EABB62006045BC /* LepraChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5014C5B929EABB62006045BC /* LepraChartView.swift */; };
 		501E772929F3D5F000786232 /* Color+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501E772829F3D5F000786232 /* Color+Random.swift */; };
 		501E772C29F3DF5800786232 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 501E772B29F3DF5800786232 /* Algorithms */; };
+		50452D172A4F7C9300926FBE /* LepraTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50452D162A4F7C9300926FBE /* LepraTableView.swift */; };
 		50469F8629F991DC00AE1206 /* LepraVotesDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50469F8529F991DC00AE1206 /* LepraVotesDetailsView.swift */; };
 		50469F8A29F995B000AE1206 /* AjaxVotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50469F8929F995B000AE1206 /* AjaxVotes.swift */; };
 		50469F8C29F995D300AE1206 /* AjaxVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50469F8B29F995D300AE1206 /* AjaxVote.swift */; };
@@ -97,6 +98,7 @@
 		500FE32329D896B900CC78CE /* DataRequest+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+Debug.swift"; sourceTree = "<group>"; };
 		5014C5B929EABB62006045BC /* LepraChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraChartView.swift; sourceTree = "<group>"; };
 		501E772829F3D5F000786232 /* Color+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Random.swift"; sourceTree = "<group>"; };
+		50452D162A4F7C9300926FBE /* LepraTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraTableView.swift; sourceTree = "<group>"; };
 		50469F8529F991DC00AE1206 /* LepraVotesDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LepraVotesDetailsView.swift; sourceTree = "<group>"; };
 		50469F8929F995B000AE1206 /* AjaxVotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjaxVotes.swift; sourceTree = "<group>"; };
 		50469F8B29F995D300AE1206 /* AjaxVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjaxVote.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				500B198429E0193E00FE61C8 /* LepraPostSectionView.swift */,
 				50547E0F29E035C500EC51A9 /* LepraPostsView.swift */,
 				50469F9829F9D09C00AE1206 /* LepraSheetView.swift */,
+				50452D162A4F7C9300926FBE /* LepraTableView.swift */,
 				506C4EA529F5645300B39A93 /* LepraTabView.swift */,
 				50469F9429F9982900AE1206 /* LepraTextLoadingIndicatorView.swift */,
 				5079847229E431A100FE22C7 /* LepraVideoView.swift */,
@@ -395,7 +398,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					50F973A829D61E4500C4E5D6 = {
 						CreatedOnToolsVersion = 14.3;
@@ -458,6 +461,7 @@
 				50469F9929F9D09C00AE1206 /* LepraSheetView.swift in Sources */,
 				50F973C929D6DF9400C4E5D6 /* LepraUser.swift in Sources */,
 				5052D4E129F46B3400D7B849 /* LepraCommentsViewModel.swift in Sources */,
+				50452D172A4F7C9300926FBE /* LepraTableView.swift in Sources */,
 				50F973C529D6DE3A00C4E5D6 /* LepraGender.swift in Sources */,
 				5052D4D829F417E600D7B849 /* LepraDomainsViewModel.swift in Sources */,
 				50469F8C29F995D300AE1206 /* AjaxVote.swift in Sources */,
@@ -520,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -549,9 +554,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -579,6 +586,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -608,9 +616,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -635,6 +645,7 @@
 				CODE_SIGN_ENTITLEMENTS = iLepra/iLepra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"iLepra/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -671,6 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = iLepra/iLepra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"iLepra/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

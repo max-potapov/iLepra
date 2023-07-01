@@ -28,6 +28,8 @@ final class LepraLoginViewModel: ObservableObject {
     func login(username: String, password: String) async throws {
         try await api.login(username: username, password: password)
         await MainActor.run {
+            self.username = username
+            self.password = password
             isAuthorized = true
         }
     }

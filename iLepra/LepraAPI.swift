@@ -34,7 +34,7 @@ actor LepraAPI {
     func login(username: String, password: String) async throws {
         guard !username.isEmpty, !password.isEmpty else { throw Error.youShallNotPass }
 
-        logger.log(level: .debug, "🚀 api/auth/login")
+        logger.log(level: .debug, "🚀 POST: api/auth/login")
 
         auth = try await AF.request(
             baseURL.appending(path: "api/auth/login"),
@@ -48,6 +48,8 @@ actor LepraAPI {
         .validate()
         .serializingDecodable(LepraAuth.self)
         .value
+
+        logger.log(level: .debug, "🚀 POST: ajax/auth/login")
 
         ajaxAuth = try await AF.request(
             baseURL.appending(path: "ajax/auth/login"),

@@ -59,7 +59,8 @@ struct LepraHTMLView_Previews: PreviewProvider {
     static var previews: some View {
         List {
             LepraHTMLView(
-                html: "<code>hello world!</code>"
+                html: "<code>hello world!</code>",
+                isCompact: .constant(true)
             )
         }
     }

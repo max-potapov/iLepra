@@ -101,8 +101,7 @@ extension Element {
                     .toView()
                     .eraseToAny()
             case "span":
-                let color: Color
-                switch try className() {
+                let color = switch try className() {
                 case "moderator":
                     color = .blue
                 case "irony":

@@ -49,23 +49,23 @@ struct LepraContentView: View {
     private func view(for tab: LepraTab) -> some View {
         switch tab {
         case .feed:
-            return LepraFeedView(navigationPath: $navigationPathFeed, shouldReload: $shouldReloadFeed)
+            LepraFeedView(navigationPath: $navigationPathFeed, shouldReload: $shouldReloadFeed)
                 .environmentObject(feedViewModel)
                 .navigationTitle(tab.title)
                 .eraseToAny()
         case .moar:
-            return LepraMoarView(navigationPath: $navigationPathMoar, shouldReload: $shouldReloadMoar)
+            LepraMoarView(navigationPath: $navigationPathMoar, shouldReload: $shouldReloadMoar)
                 .environmentObject(moarViewModel)
                 .navigationTitle(tab.title)
                 .badge(moarViewModel.unreadCount)
                 .eraseToAny()
         case .domains:
-            return LepraDomainsView(navigationPath: $navigationPathDomains, shouldReload: $shouldReloadDomains)
+            LepraDomainsView(navigationPath: $navigationPathDomains, shouldReload: $shouldReloadDomains)
                 .environmentObject(domainsViewModel)
                 .navigationTitle(tab.title)
                 .eraseToAny()
         case .profile:
-            return LepraProfileView(shouldReload: $shouldReloadProfile)
+            LepraProfileView(shouldReload: $shouldReloadProfile)
                 .environmentObject(profileViewModel)
                 .navigationTitle(tab.title)
                 .eraseToAny()

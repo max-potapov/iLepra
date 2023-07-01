@@ -13,6 +13,7 @@ struct LepraPostSectionView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Binding var navigationPath: NavigationPath
     @Binding var post: LepraPost
+    @State var isCompact: Bool = false
     @State private var isPresented: Bool = false
 
     var useHorizontalLayout: Bool {
@@ -35,7 +36,7 @@ struct LepraPostSectionView: View {
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: useHorizontalLayout ? 8 : 24) {
-                LepraHTMLView(html: post.body)
+                LepraHTMLView(html: post.body, isCompact: $isCompact)
 
                 Divider()
 

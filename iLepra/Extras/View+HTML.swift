@@ -15,7 +15,7 @@ import SwiftUI
 // swiftlint:disable cyclomatic_complexity
 // swiftlint:disable function_body_length
 
-private struct HTMLError: Error {}
+struct HTMLError: Error {}
 
 extension [Node] {
     func toView() -> some View {

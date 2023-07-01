@@ -47,35 +47,45 @@ struct LepraCommentsView: View {
                 Text("Тут больше нет непрочитанных комментариев, %username%!")
                     .font(.headline)
             } else {
-                List(nodes, children: \.children) { node in
-                    let comment = node.value
-                    VStack(alignment: .leading) {
-                        LepraHTMLView(html: comment.body)
-                        Spacer()
-                            .frame(height: 8)
-                        HStack(alignment: .center) {
-                            LepraVotesView(
-                                isReversed: true,
-                                id: comment.id,
-                                rating: comment.rating,
-                                userVote: comment.userVote ?? 0,
-                                voteWeight: post.voteWeight
-                            ) { id, vote in
-                                setVote(vote, for: id)
-                            } showAction: { id in
-                                showVotes(for: id)
-                            }
-                            Text(
-                                comment.user.wroteOnceText(
-                                    when: comment.created,
-                                    useAbsoluteTime: useAbsoluteTime ?? false
+                List {
+                    LepraPostSectionView(
+                        navigationPath: .constant(.init()),
+                        post: $post,
+                        isCompact: true
+                    )
+
+                    OutlineGroup(nodes, children: \.children) { node in
+                        let comment = node.value
+                        VStack(alignment: .leading) {
+                            LepraHTMLView(html: comment.body, isCompact: .constant(false))
+                            Spacer()
+                                .frame(height: 8)
+                            HStack(alignment: .center) {
+                                LepraVotesView(
+                                    isReversed: true,
+                                    id: comment.id,
+                                    rating: comment.rating,
+                                    userVote: comment.userVote ?? 0,
+                                    voteWeight: post.voteWeight
+                                ) { id, vote in
+                                    setVote(vote, for: id)
+                                } showAction: { id in
+                                    showVotes(for: id)
+                                }
+                                Text(
+                                    comment.user.wroteOnceText(
+                                        when: comment.created,
+                                        useAbsoluteTime: useAbsoluteTime ?? false
+                                    )
                                 )
-                            )
-                            .font(.footnote)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.footnote)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                                Spacer()
+                            }
                         }
+                        .badge(comment.unread ? "▵" : "")
                     }
-                    .badge(comment.unread ? "▵" : "")
                 }
             }
         }

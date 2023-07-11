@@ -30,7 +30,7 @@ final class LepraNode: Identifiable, Hashable {
         let unread: [LepraNode] = showUnreadOnly ? unread(nodes: tree) : tree
         let sorted: [LepraNode] = sortByDate
             ? unread.sorted { $0.value.dateOrder < $1.value.dateOrder }
-            : unread.sorted { $0.value.ratingOrder < $1.value.ratingOrder }
+            : unread.sorted { $0.value.rating > $1.value.rating }
 
         return sorted
     }

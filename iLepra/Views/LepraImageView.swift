@@ -8,6 +8,19 @@
 import Kingfisher
 import SwiftUI
 
+#if os(iOS)
+    typealias AnimatedImage = KFAnimatedImage
+
+    extension AnimatedImage {
+        func resizable(capInsets: EdgeInsets = EdgeInsets(), resizingMode: Image.ResizingMode = .stretch) -> Self {
+            self
+        }
+    }
+
+#else
+    typealias AnimatedImage = KFImage
+#endif
+
 struct LepraImageView: View {
     let url: URL
     @State private var isPresented = false
@@ -42,7 +55,8 @@ struct LepraImageView: View {
     }
 
     var imageView: some View {
-        KFAnimatedImage(url)
+        AnimatedImage(url)
+            .resizable()
             .scaledToFit()
             .onTapGesture {
                 isPresented.toggle()

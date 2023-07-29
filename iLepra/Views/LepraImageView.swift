@@ -5,7 +5,7 @@
 //  Created by Maxim Potapov on 10.04.2023.
 //
 
-import SDWebImageSwiftUI
+import Kingfisher
 import SwiftUI
 
 struct LepraImageView: View {
@@ -42,8 +42,7 @@ struct LepraImageView: View {
     }
 
     var imageView: some View {
-        AnimatedImage(url: url)
-            .resizable()
+        KFAnimatedImage(url)
             .scaledToFit()
             .onTapGesture {
                 isPresented.toggle()

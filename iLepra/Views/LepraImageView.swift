@@ -5,8 +5,21 @@
 //  Created by Maxim Potapov on 10.04.2023.
 //
 
-import SDWebImageSwiftUI
+import Kingfisher
 import SwiftUI
+
+#if os(iOS)
+    typealias AnimatedImage = KFAnimatedImage
+
+    extension AnimatedImage {
+        func resizable(capInsets: EdgeInsets = EdgeInsets(), resizingMode: Image.ResizingMode = .stretch) -> Self {
+            self
+        }
+    }
+
+#else
+    typealias AnimatedImage = KFImage
+#endif
 
 struct LepraImageView: View {
     let url: URL
@@ -42,7 +55,7 @@ struct LepraImageView: View {
     }
 
     var imageView: some View {
-        AnimatedImage(url: url)
+        AnimatedImage(url)
             .resizable()
             .scaledToFit()
             .onTapGesture {

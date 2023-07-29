@@ -15,7 +15,6 @@ enum LepraWindowID: String {
 
 @main
 struct LepraApp: App {
-    private let cache: LepraCache = .init()
     @StateObject private var viewModel: LepraLoginViewModel = .init()
 
     var body: some Scene {
